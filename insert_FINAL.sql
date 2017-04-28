@@ -1,6 +1,6 @@
 -- person
 
---(authors)
+-- (authors)
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (1,"Russell","Sharidan","author");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (2,"Clark","Walsh","author");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (3,"Holly","Lambert","author");
@@ -12,7 +12,7 @@ INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (8,"Debra
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (9,"Herrod","Hopkins","author");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (10,"Noble","Graham","author");
 
---(reviewers)
+-- (reviewers)
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (51,"Montana","Forbes","reviewer");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (52,"Kay","Jensen","reviewer");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (53,"Rachel","Winters","reviewer");
@@ -24,11 +24,11 @@ INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (58,"Bell
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (59,"Angela","Rivera","reviewer");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (60,"Fay","Chan","reviewer");
 
---(editors)
+-- (editors)
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (101,"Silas","Diaz","editor");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (102,"Plato","Pace","editor");
 
---affiliation
+-- affiliation
 INSERT INTO `affiliation` (`affiliation_code`,`affiliation`) VALUES (500,"Quality Assurance");
 INSERT INTO `affiliation` (`affiliation_code`,`affiliation`) VALUES (501,"Public Relations");
 INSERT INTO `affiliation` (`affiliation_code`,`affiliation`) VALUES (502,"Asset Management");
@@ -131,7 +131,7 @@ INSERT INTO `affiliation` (`affiliation_code`,`affiliation`) VALUES (598,"Custom
 INSERT INTO `affiliation` (`affiliation_code`,`affiliation`) VALUES (599,"Human Resources");
 
 -- person_to_affiliation
---authors
+-- authors
 INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (1,557);
 INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (2,507);
 INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (3,515);
@@ -142,7 +142,7 @@ INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (7,569);
 INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (8,543);
 INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (9,521);
 INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (10,521);
---reviewers
+-- reviewers
 INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (51,599);
 INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (52,542);
 INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (53,552);
@@ -155,9 +155,9 @@ INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (59,576);
 INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (60,555);
 
 
---person_to_RICode
+-- person_to_RICode
 -- 100 rows, 50 with one RICode, 30 with two, 20 with three
---one RICode reviewer
+-- one RICode reviewer
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (51,51);
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (52,70);
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (53,84);
@@ -182,23 +182,23 @@ INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (59,57);
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (60,76);
 
 -- manuscripts
---in typesetting
+-- in typesetting
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (81,"Nulla semper tellus id","2016-05-22 01:10:58","in typesetting",114,101);
---submitted
+-- submitted
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (61,"nonummy","2016-07-14 08:14:49","submitted",85,101);
---accepted
+-- accepted
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (41,"eros.","2016-11-05 16:01:10","accepted",28,101);
---rejected
+-- rejected
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (21,"iaculis","2016-12-21 05:50:19","rejected",107,102);
---under review
+-- under review
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (1,"nostra,","2016-07-15 00:51:38","under review",34,102);
---scheduled for publication
+-- scheduled for publication
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (101,"habitant morbi","2016-08-26 13:07:40","scheduled for publication",73,102);
---published
+-- published
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (121,"rhoncus. Donec est. Nunc","2016-05-03 12:17:17","published",2,102);
 
 
---accepted_man 
+-- accepted_man 
 -- status = accepted and num of pages is null bc before typesetting
 INSERT INTO `accepted_man` (`manuscript_id`,`date_of_acceptance`,`num_of_pages`) VALUES (41,"2017-10-12 10:46:23",NULL);
 -- status = in typesetting
@@ -226,7 +226,7 @@ INSERT INTO `man_to_author` (`manuscript_id`,`person_id`,`author_order_num`) VAL
 INSERT INTO `man_to_author` (`manuscript_id`,`person_id`,`author_order_num`) VALUES (41,6,3);
 
 
---issue
+-- issue
 INSERT INTO `issue` (`issue_id`,`print_date`,`pub_period`,`pub_year`,`person_id`) VALUES (1,"2017-11-28 07:00:51",3,1996,101);
 INSERT INTO `issue` (`issue_id`,`print_date`,`pub_period`,`pub_year`,`person_id`) VALUES (2,"2017-01-26 12:37:32",1,1984,102);
 
@@ -235,10 +235,8 @@ INSERT INTO `issue_to_man` (`manuscript_id`,`issue_id`,`page_num`,`position_in_i
 INSERT INTO `issue_to_man` (`manuscript_id`,`issue_id`,`page_num`,`position_in_issue`) VALUES (121,2,30,2);
 
 
---feedback 
-
--- NEED TO UPDATE SO THAT REVIEWERS HAVE SAME RICODE AS THEIR MANUSCRIPT
-
+-- feedback 
+-- made sure reviewers have same RICode as manuscript
 -- manu 1 has RICode 34
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (1,51,"2017-04-14 16:27:39",8,7,1,1,2,"2016-08-20 07:11:19");
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (1,52,"2016-10-30 00:21:31",9,10,6,6,6,"2018-03-02 17:42:02");

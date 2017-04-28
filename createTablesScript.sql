@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS accepted_man;
 DROP TABLE IF EXISTS issue_to_man;
 DROP TABLE IF EXISTS person_to_RICode;
 DROP TABLE IF EXISTS man_to_author;
+DROP TABLE IF EXISTS affiliation;
 DROP TABLE IF EXISTS person_to_affiliation;
 DROP TABLE IF EXISTS issue;
 DROP TABLE IF EXISTS manuscript;
