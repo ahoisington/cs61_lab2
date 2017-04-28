@@ -1,5 +1,5 @@
 -- Elisabeth & Acacia
--- create view for lab 2c
+-- create views for lab 2c
 -- April 24, 2017
 
 DROP VIEW IF EXISTS LeadAuthorManuscripts;

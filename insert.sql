@@ -1,3 +1,7 @@
+-- Elisabeth & Acacia
+-- insert data for lab 2c
+-- April 22, 2017
+
 -- person
 
 -- (authors)
