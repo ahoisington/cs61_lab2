@@ -2,7 +2,7 @@
 -- create tables for lab 2c
 -- April 22, 2017
 
-USE acaciah_db;
+USE epills_db;
 SHOW TABLES;
 
 DROP TABLE IF EXISTS author;
@@ -13,8 +13,8 @@ DROP TABLE IF EXISTS accepted_man;
 DROP TABLE IF EXISTS issue_to_man;
 DROP TABLE IF EXISTS person_to_RICode;
 DROP TABLE IF EXISTS man_to_author;
-DROP TABLE IF EXISTS affiliation;
 DROP TABLE IF EXISTS person_to_affiliation;
+DROP TABLE IF EXISTS affiliation;
 DROP TABLE IF EXISTS issue;
 DROP TABLE IF EXISTS manuscript;
 DROP TABLE IF EXISTS RICodes;
@@ -35,11 +35,20 @@ CREATE TABLE person
 --
 -- Table structure for table `RICodes`
 --
+-- CREATE TABLE RICodes
+-- (
+-- 	RICode INT NOT NULL,
+-- 	RIString VARCHAR(45) NOT NULL,
+-- 	PRIMARY KEY (RICode)
+-- );
+-- 
+
+-- FROM PALMER'S RIcodes.sql
 CREATE TABLE RICodes
-(
-	RICode INT NOT NULL,
-	RIString VARCHAR(45) NOT NULL,
-	PRIMARY KEY (RICode)
+( 
+	RICode      INT NOT NULL AUTO_INCREMENT,
+    interest	varchar(64) NOT NULL,
+    PRIMARY KEY (RICode)
 );
 
 --

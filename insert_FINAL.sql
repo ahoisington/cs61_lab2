@@ -23,6 +23,26 @@ INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (57,"Zori
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (58,"Bell","Larsen","reviewer");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (59,"Angela","Rivera","reviewer");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (60,"Fay","Chan","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (61,"Montana","Forbes","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (62,"Kay","Jensen","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (63,"Rachel","Winters","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (64,"Thor","Simmons","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (65,"Vivian","Shelton","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (66,"Camille","Ryan","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (67,"Zorita","Shields","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (68,"Bell","Larsen","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (69,"Angela","Rivera","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (70,"Fay","Chan","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (71,"Montana","Forbes","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (72,"Kay","Jensen","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (73,"Rachel","Winters","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (74,"Thor","Simmons","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (75,"Vivian","Shelton","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (76,"Camille","Ryan","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (77,"Zorita","Shields","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (78,"Bell","Larsen","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (79,"Angela","Rivera","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (80,"Fay","Chan","reviewer");
 
 -- (editors)
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (101,"Silas","Diaz","editor");
@@ -132,77 +152,281 @@ INSERT INTO `affiliation` (`affiliation_code`,`affiliation`) VALUES (599,"Human 
 
 -- person_to_affiliation
 -- authors
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (1,557);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (2,507);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (3,515);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (4,539);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (5,503);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (6,525);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (7,569);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (8,543);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (9,521);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (10,521);
--- reviewers
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (51,599);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (52,542);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (53,552);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (54,545);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (55,566);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (56,528);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (57,542);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (58,590);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (59,576);
-INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (60,555);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (1,557);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (2,507);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (3,515);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (4,539);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (5,503);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (6,525);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (7,569);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (8,543);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (9,521);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (10,521);
+-- -- reviewers
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (51,599);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (52,542);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (53,552);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (54,545);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (55,566);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (56,528);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (57,542);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (58,590);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (59,576);
+-- INSERT INTO `man_to_affiliation` (`person_id`,`affiliation_id`) VALUES (60,555);
 
+-- FROM PALMER'S RIcodes.sql
+INSERT INTO RICodes (interest) VALUES
+('Agricultural engineering'),
+('Biochemical engineering'),
+('Biomechanical engineering'),
+('Ergonomics'),
+('Food engineering'),
+('Bioprocess engineering'),
+('Genetic engineering'),
+('Human genetic engineering'),
+('Metabolic engineering'),
+('Molecular engineering'),
+('Neural engineering'),
+('Protein engineering'),
+('Rehabilitation engineering'),
+('Tissue engineering'),
+('Aquatic and environmental engineering'),
+('Architectural engineering'),
+('Civionic engineering'),
+('Construction engineering'),
+('Earthquake engineering'),
+('Earth systems engineering and management'),
+('Ecological engineering'),
+('Environmental engineering'),
+('Geomatics engineering'),
+('Geotechnical engineering'),
+('Highway engineering'),
+('Hydraulic engineering'),
+('Landscape engineering'),
+('Land development engineering'),
+('Pavement engineering'),
+('Railway systems engineering'),
+('River engineering'),
+('Sanitary engineering'),
+('Sewage engineering'),
+('Structural engineering'),
+('Surveying'),
+('Traffic engineering'),
+('Transportation engineering'),
+('Urban engineering'),
+('Irrigation and agriculture engineering'),
+('Explosives engineering'),
+('Biomolecular engineering'),
+('Ceramics engineering'),
+('Broadcast engineering'),
+('Building engineering'),
+('Signal Processing'),
+('Computer engineering'),
+('Power systems engineering'),
+('Control engineering'),
+('Telecommunications engineering'),
+('Electronic engineering'),
+('Instrumentation engineering'),
+('Network engineering'),
+('Neuromorphic engineering'),
+('Engineering Technology'),
+('Integrated engineering'),
+('Value engineering'),
+('Cost engineering'),
+('Fire protection engineering'),
+('Domain engineering'),
+('Engineering economics'),
+('Engineering management'),
+('Engineering psychology'),
+('Ergonomics'),
+('Facilities Engineering'),
+('Logistic engineering'),
+('Model-driven engineering'),
+('Performance engineering'),
+('Process engineering'),
+('Product Family Engineering'),
+('Quality engineering'),
+('Reliability engineering'),
+('Safety engineering'),
+('Security engineering'),
+('Support engineering'),
+('Systems engineering'),
+('Metallurgical Engineering'),
+('Surface Engineering'),
+('Biomaterials Engineering'),
+('Crystal Engineering'),
+('Amorphous Metals'),
+('Metal Forming'),
+('Ceramic Engineering'),
+('Plastics Engineering'),
+('Forensic Materials Engineering'),
+('Composite Materials'),
+('Casting'),
+('Electronic Materials'),
+('Nano materials'),
+('Corrosion Engineering'),
+('Vitreous Materials'),
+('Welding'),
+('Acoustical engineering'),
+('Aerospace engineering'),
+('Audio engineering'),
+('Automotive engineering'),
+('Building services engineering'),
+('Earthquake engineering'),
+('Forensic engineering'),
+('Marine engineering'),
+('Mechatronics'),
+('Nanoengineering'),
+('Naval architecture'),
+('Sports engineering'),
+('Structural engineering'),
+('Vacuum engineering'),
+('Military engineering'),
+('Combat engineering'),
+('Offshore engineering'),
+('Optical engineering'),
+('Geophysical engineering'),
+('Mineral engineering'),
+('Mining engineering'),
+('Reservoir engineering'),
+('Climate engineering'),
+('Computer-aided engineering'),
+('Cryptographic engineering'),
+('Information engineering'),
+('Knowledge engineering'),
+('Language engineering'),
+('Release engineering'),
+('Teletraffic engineering'),
+('Usability engineering'),
+('Web engineering'),
+('Systems engineering');
 
 -- person_to_RICode
--- 100 rows, 50 with one RICode, 30 with two, 20 with three
--- one RICode reviewer
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (51,51);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (52,70);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (53,84);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (54,52);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (55,85);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (56,71);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (57,86);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (58,53);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (59,72);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (60,54);
--- two RICode reviewer
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (54,87);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (55,73);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (56,74);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (57,88);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (58,55);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (59,56);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (60,75);
--- three RICode reviewers
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (58,89);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (59,57);
-INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (60,76);
+-- THESE REVIEWERS HAVE 1 RICODE
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (51,1);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (52,2);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (53,3);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (54,4);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (55,5);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (56,6);
+
+-- THESE REVIEWERS HAVE 2 RICODES
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (57,1);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (57,2);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (58,3);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (58,4);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (59,5);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (59,6);
+
+-- THESE REVIEWERS HAVE 3 RICODES
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (60,1);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (60,2);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (60,3);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (61,4);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (61,5);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (61,6);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (62,7);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (62,8);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (62,9);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (63,10);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (63,11);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (63,12);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (64,13);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (64,14);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (64,15);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (65,16);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (65,17);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (65,18);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (66,19);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (66,20);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (66,21);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (67,22);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (67,23);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (67,24);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (68,25);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (68,26);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (68,27);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (69,28);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (69,29);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (69,30);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (70,1);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (70,2);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (70,3);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (71,4);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (71,5);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (71,6);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (72,7);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (72,8);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (72,9);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (73,10);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (73,11);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (73,12);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (74,13);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (74,14);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (74,15);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (75,16);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (75,17);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (75,18);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (76,19);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (76,20);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (76,21);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (77,22);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (77,23);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (77,24);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (78,25);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (78,26);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (78,27);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (79,28);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (79,29);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (79,30);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (80,1);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (80,7);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (80,32);
 
 -- manuscripts
 -- in typesetting
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (81,"Nulla semper tellus id","2016-05-22 01:10:58","in typesetting",114,101);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (81,"Nulla semper tellus id","2016-05-22 01:10:58","in typesetting",5,101);
 -- submitted
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (61,"nonummy","2016-07-14 08:14:49","submitted",85,101);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (61,"nonummy","2016-07-14 08:14:49","submitted",4,101);
 -- accepted
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (41,"eros.","2016-11-05 16:01:10","accepted",28,101);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (41,"eros.","2016-11-05 16:01:10","accepted",3,101);
 -- rejected
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (21,"iaculis","2016-12-21 05:50:19","rejected",107,102);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (21,"iaculis","2016-12-21 05:50:19","rejected",2,102);
 -- under review
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (1,"nostra,","2016-07-15 00:51:38","under review",34,102);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (1,"nostra,","2016-07-15 00:51:38","under review",1,102);
 -- scheduled for publication
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (101,"habitant morbi","2016-08-26 13:07:40","scheduled for publication",73,102);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (101,"habitant morbi","2016-08-26 13:07:40","scheduled for publication",6,102);
 -- published
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_received`,`status`,`RICode`,`person_id`) VALUES (121,"rhoncus. Donec est. Nunc","2016-05-03 12:17:17","published",2,102);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (121,"rhoncus. Donec est. Nunc","2016-05-03 12:17:17","published",7,102);
 
 
 -- accepted_man 
 -- status = accepted and num of pages is null bc before typesetting
-INSERT INTO `accepted_man` (`manuscript_id`,`date_of_acceptance`,`num_of_pages`) VALUES (41,"2017-10-12 10:46:23",NULL);
+INSERT INTO `accepted_man` (`manuscript_id`,`date_of_acceptance`,`num_pages`) VALUES (41,"2017-10-12 10:46:23",NULL);
 -- status = in typesetting
-INSERT INTO `accepted_man` (`manuscript_id`,`date_of_acceptance`,`num_of_pages`) VALUES (81,"2018-02-03 06:40:11",12);
+INSERT INTO `accepted_man` (`manuscript_id`,`date_of_acceptance`,`num_pages`) VALUES (81,"2018-02-03 06:40:11",12);
 
 -- man_to_author
 INSERT INTO `man_to_author` (`manuscript_id`,`person_id`,`author_order_num`) VALUES (81,1,1);
@@ -227,8 +451,8 @@ INSERT INTO `man_to_author` (`manuscript_id`,`person_id`,`author_order_num`) VAL
 
 
 -- issue
-INSERT INTO `issue` (`issue_id`,`print_date`,`pub_period`,`pub_year`,`person_id`) VALUES (1,"2017-11-28 07:00:51",3,1996,101);
-INSERT INTO `issue` (`issue_id`,`print_date`,`pub_period`,`pub_year`,`person_id`) VALUES (2,"2017-01-26 12:37:32",1,1984,102);
+INSERT INTO `issue` (`issue_id`,`print_date`,`pub_period_num`,`pub_year`,`person_id`) VALUES (1,"2017-11-28 07:00:51",3,1996,101);
+INSERT INTO `issue` (`issue_id`,`print_date`,`pub_period_num`,`pub_year`,`person_id`) VALUES (2,"2017-01-26 12:37:32",1,1984,102);
 
 -- issue_to_man
 INSERT INTO `issue_to_man` (`manuscript_id`,`issue_id`,`page_num`,`position_in_issue`) VALUES (101,1,19,5);
@@ -236,41 +460,42 @@ INSERT INTO `issue_to_man` (`manuscript_id`,`issue_id`,`page_num`,`position_in_i
 
 
 -- feedback 
--- made sure reviewers have same RICode as manuscript
--- manu 1 has RICode 34
+-- manu 1 has RICode 1
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (1,51,"2017-04-14 16:27:39",8,7,1,1,2,"2016-08-20 07:11:19");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (1,52,"2016-10-30 00:21:31",9,10,6,6,6,"2018-03-02 17:42:02");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (1,53,"2016-11-21 08:31:29",2,3,10,9,2,"2016-05-11 06:15:16");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (1,57,"2016-10-30 00:21:31",9,10,6,6,6,"2018-03-02 17:42:02");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (1,70,"2016-11-21 08:31:29",2,3,10,9,2,"2016-05-11 06:15:16");
 
--- manu 21 has RICode 107
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (21,54,"2017-03-21 22:15:06",6,9,6,5,4,"2017-06-14 09:31:41");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (21,55,"2017-02-12 13:04:09",4,1,4,10,2,"2018-01-02 14:16:13");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (21,56,"2017-01-24 16:00:16",5,2,9,10,1,"2017-05-02 17:56:52");
+-- manu 21 has RICode 2
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (21,52,"2017-03-21 22:15:06",6,9,6,5,4,"2017-06-14 09:31:41");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (21,60,"2017-02-12 13:04:09",4,1,4,10,2,"2018-01-02 14:16:13");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (21,70,"2017-01-24 16:00:16",5,2,9,10,1,"2017-05-02 17:56:52");
 
--- manu 41 has RICode 28
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (41,57,"2016-10-23 08:40:38",3,3,1,10,7,"2017-10-15 11:35:24");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (41,58,"2016-08-23 13:53:05",4,7,9,5,9,"2016-07-11 08:12:38");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (41,59,"2017-04-10 12:09:25",3,10,6,7,3,"2017-09-09 17:43:17");
+-- manu 41 has RICode 3
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (41,58,"2016-10-23 08:40:38",3,3,1,10,7,"2017-10-15 11:35:24");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (41,60,"2016-08-23 13:53:05",4,7,9,5,9,"2016-07-11 08:12:38");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (41,70,"2017-04-10 12:09:25",3,10,6,7,3,"2017-09-09 17:43:17");
 
--- manu 61 has RICode 85
+-- manu 61 has RICode 4
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (61,54,"2017-02-09 06:00:53",7,1,2,8,9,"2016-06-10 17:07:47");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (61,87,"2017-04-23 17:40:25",2,8,1,9,5,"2017-04-21 00:45:16");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (61,73,"2016-08-18 10:27:55",7,5,4,5,5,"2017-04-08 00:39:44");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (61,58,"2017-04-23 17:40:25",2,8,1,9,5,"2017-04-21 00:45:16");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (61,71,"2016-08-18 10:27:55",7,5,4,5,5,"2017-04-08 00:39:44");
 
--- manu 81 has RICode 114
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (81,74,"2016-11-26 18:53:47",8,1,7,10,8,"2017-08-24 21:51:58");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (81,88,"2017-02-14 11:37:09",8,8,6,5,7,"2017-05-02 00:41:36");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (81,55,"2017-03-07 15:10:55",2,1,6,8,10,"2017-02-13 00:56:38");
+-- manu 81 has RICode 5
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (81,55,"2016-11-26 18:53:47",8,1,7,10,8,"2017-08-24 21:51:58");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (81,61,"2017-02-14 11:37:09",8,8,6,5,7,"2017-05-02 00:41:36");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (81,71,"2017-03-07 15:10:55",2,1,6,8,10,"2017-02-13 00:56:38");
 
--- manu 101 has RICode 73
+-- manu 101 has RICode 6
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (101,56,"2016-10-09 10:57:07",6,4,5,1,4,"2017-04-01 02:39:19");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (101,75,"2017-04-12 20:42:33",2,1,3,10,2,"2017-01-07 22:20:11");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (101,89,"2017-03-20 23:02:15",6,10,5,10,7,"2018-01-29 19:37:17");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (101,59,"2017-04-12 20:42:33",2,1,3,10,2,"2017-01-07 22:20:11");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (101,71,"2017-03-20 23:02:15",6,10,5,10,7,"2018-01-29 19:37:17");
 
--- manu 121 has RICode 2
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (121,57,"2017-02-08 00:04:22",10,1,5,10,7,"2017-12-26 12:16:28");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (121,76,"2017-02-01 22:01:48",8,4,5,8,5,"2018-02-05 10:45:51");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (121,90,"2016-12-23 01:22:35",6,10,2,1,2,"2017-12-24 09:32:13");
+-- manu 121 has RICode 7
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (121,62,"2017-02-08 00:04:22",10,1,5,10,7,"2017-12-26 12:16:28");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (121,72,"2017-02-01 22:01:48",8,4,5,8,5,"2018-02-05 10:45:51");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (121,80,"2016-12-23 01:22:35",6,10,2,1,2,"2017-12-24 09:32:13");
+
+
 
 
 
