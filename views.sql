@@ -85,18 +85,14 @@ CREATE VIEW WhatsLeft
 AS
 SELECT date_submitted, manuscript_id, title, 
 CASE 
-	WHEN man_status = 'submitted' THEN 'under review | rejected | accepted | in typesetting | 
-	scheduled for publication | published' 
-	WHEN man_status = 'under review' THEN 'rejected | accepted | in typesetting | 
-	scheduled for publication | published' 
-    WHEN man_status = 'rejected' THEN 'accepted | in typesetting | 
-	scheduled for publication | published' 
-    WHEN man_status = 'accepted' THEN 'accepted | in typesetting | 
-	scheduled for publication | published' 
-    WHEN man_status = 'in typesetting' THEN 'scheduled for publication | published' 
+	WHEN man_status = 'submitted' THEN 'under review' 
+	WHEN man_status = 'under review' THEN 'rejected' 
+    WHEN man_status = 'rejected' THEN 'accepted' 
+    WHEN man_status = 'accepted' THEN 'in typesetting' 
+    WHEN man_status = 'in typesetting' THEN 'scheduled for publication' 
     WHEN man_status = 'scheduled for publication' Then 'published' 
     WHEN man_status = 'published' THEN NULL
-    END AS remaining_steps
+    END AS next_step
 FROM manuscript
 ORDER BY date_submitted ASC;
 

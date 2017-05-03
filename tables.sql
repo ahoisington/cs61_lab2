@@ -2,7 +2,7 @@
 -- create tables for lab 2c
 -- April 22, 2017
 
-USE epills_db;
+USE acaciah_db;
 SHOW TABLES;
 
 DROP TABLE IF EXISTS author;
@@ -32,16 +32,6 @@ CREATE TABLE person
 	PRIMARY KEY (person_id)
 );
 
---
--- Table structure for table `RICodes`
---
--- CREATE TABLE RICodes
--- (
--- 	RICode INT NOT NULL,
--- 	RIString VARCHAR(45) NOT NULL,
--- 	PRIMARY KEY (RICode)
--- );
--- 
 
 -- FROM PALMER'S RIcodes.sql
 CREATE TABLE RICodes
