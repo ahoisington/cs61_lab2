@@ -416,6 +416,10 @@ INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (21,"iaculis","2016-12-21 05:50:19","rejected",2,102);
 -- under review
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (1,"nostra,","2016-07-15 00:51:38","under review",1,102);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (2,"cheesecake,","2016-08-15 00:51:38","under review",4,102);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (3,"fries,","2016-09-15 00:51:38","under review",5,101);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (4,"collis pasta,","2016-10-15 00:51:38","under review",6,101);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (5,"MOZZ STICKS,","2015-01-05 00:31:48","under review",7,102);
 -- scheduled for publication
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (101,"habitant morbi","2016-08-26 13:07:40","scheduled for publication",6,102);
 -- published
@@ -465,6 +469,27 @@ INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriate
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (1,57,"2016-10-30 00:21:31",9,10,6,6,6,"2018-03-02 17:42:02");
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (1,70,"2016-11-21 08:31:29",2,3,10,9,2,"2016-05-11 06:15:16");
 
+-- manuscript 2 has RICode 4 and 3 reviewers
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (2,54,"2017-02-09 06:00:53",7,1,2,8,9,"2016-06-10 17:07:47");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (2,58,"2017-04-23 17:40:25",2,8,1,9,5,"2017-04-21 00:45:16");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (2,71,"2016-08-18 10:27:55",7,5,4,5,5,"2017-04-08 00:39:44");
+
+-- manuscript 3 has RICode 5 and 3 reviewers
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (3,55,"2016-11-26 18:53:47",8,1,7,10,8,"2017-08-24 21:51:58");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (3,61,"2017-02-14 11:37:09",8,8,6,5,7,"2017-05-02 00:41:36");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (3,71,"2017-03-07 15:10:55",2,1,6,8,10,"2017-02-13 00:56:38");
+
+-- manuscript 4 has RICode 6 and 4 reviewers
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (4,56,"2016-10-09 10:57:07",6,4,5,1,4,"2017-04-01 02:39:19");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (4,59,"2017-04-12 20:42:33",2,1,3,10,2,"2017-01-07 22:20:11");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (4,71,"2017-03-20 23:02:15",6,10,5,10,7,"2018-01-29 19:37:17");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (4,79,"2017-03-20 23:02:15",6,10,5,10,7,"2018-01-29 19:37:17");
+
+-- manuscript 5 has RICode 7 and 3 reviewers
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (5,62,"2017-02-09 06:00:53",7,1,2,8,9,"2016-06-10 17:07:47");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (5,72,"2017-04-23 17:40:25",2,8,1,9,5,"2017-04-21 00:45:16");
+INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (5,80,"2016-08-18 10:27:55",7,5,4,5,5,"2017-04-08 00:39:44");
+
 -- manu 21 has RICode 2
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (21,52,"2017-03-21 22:15:06",6,9,6,5,4,"2017-06-14 09:31:41");
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (21,60,"2017-02-12 13:04:09",4,1,4,10,2,"2018-01-02 14:16:13");
@@ -480,7 +505,7 @@ INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriate
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (61,58,"2017-04-23 17:40:25",2,8,1,9,5,"2017-04-21 00:45:16");
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (61,71,"2016-08-18 10:27:55",7,5,4,5,5,"2017-04-08 00:39:44");
 
--- manu 81 has RICode 5
+-- manu 81 & has RICode 5
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (81,55,"2016-11-26 18:53:47",8,1,7,10,8,"2017-08-24 21:51:58");
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (81,61,"2017-02-14 11:37:09",8,8,6,5,7,"2017-05-02 00:41:36");
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (81,71,"2017-03-07 15:10:55",2,1,6,8,10,"2017-02-13 00:56:38");
@@ -494,7 +519,6 @@ INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriate
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (121,62,"2017-02-08 00:04:22",10,1,5,10,7,"2017-12-26 12:16:28");
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (121,72,"2017-02-01 22:01:48",8,4,5,8,5,"2018-02-05 10:45:51");
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (121,80,"2016-12-23 01:22:35",6,10,2,1,2,"2017-12-24 09:32:13");
-
 
 
 
