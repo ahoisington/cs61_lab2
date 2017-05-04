@@ -2,6 +2,10 @@
 -- create triggers for lab 2d
 -- May 2, 2017
 
+DROP TRIGGER IF EXISTS check_revRICode;
+DROP TRIGGER IF EXISTS resignedReviewer;
+
+-- TRIGGER 1
 DELIMITER ;;
 CREATE TRIGGER check_revRICode BEFORE INSERT ON manuscript 
 FOR EACH ROW 
@@ -16,44 +20,49 @@ BEGIN
     END IF;
 END;;
   
-  
-  
-  
-  
-  
-  
--- 
--- -- EXAMPLES
--- DELIMITER $$
--- 
--- CREATE TRIGGER staffOfficeNullReplacerTrigger BEFORE INSERT ON Staff
--- FOR EACH ROW BEGIN
---    IF (NEW.office IS NULL) THEN
---         INSERT INTO Staff(office) VALUES("N/A");
---    END IF;
--- END$$
--- DELIMITER;
--- 
--- CREATE TRIGGER check_for_aliens AFTER UPDATE ON takes
--- REFERENCING NEW ROW AS nrow 
--- BEGIN
--- UPDATE student
--- SET tot_cred = 0
--- WHERE name='Zaphod' AND takes.
--- 
---   
--- DELIMITER ;;
--- CREATE TRIGGER `ins_film` BEFORE INSERT ON `film` FOR EACH ROW BEGIN
---     INSERT INTO film_text (film_id, title, description)
---         VALUES (new.film_id, new.title, new.description);
---   END;;
---   
---   -- makes sure emp backup is same as emp
--- CREATE TRIGGER TRG_InsertSyncEmp 
--- ON dbo.EMPLOYEE
--- AFTER INSERT AS
--- BEGIN
--- INSERT INTO EMPLOYEE_BACKUP
--- SELECT * FROM INSERTED
--- END
+-- TRIGGER 2
+DELIMITER $$
+CREATE TRIGGER resignedReviewer BEFORE DELETE ON person FOR EACH ROW
+BEGIN
+    DECLARE man_id int;
+    DECLARE num_reviewers int;
+	-- DECLARE signal_message VARCHAR(128);
+
+    -- Variables related to cursor:
+    --    1. 'done' will be used to check if all the rows in the cursor 
+    --       have been read
+    --    2. 'curRes' will be the cursor: it will fetch each row
+    --    3. The 'continue' handler will update the 'done' variable
+    DECLARE done int default false;
+    DECLARE curRes cursor for
+        SELECT DISTINCT manuscript_id FROM reviewer_info WHERE reviewer_person_id = OLD.person_id; -- This is the query used by the cursor.
+    DECLARE continue handler for not found -- This handler will be executed if no row is found in the cursor (for example, if all rows have been read).
+        SET done = true;
+
+    -- Open the cursor: This will put the cursor on the first row of its
+    -- rowset.
+    open curRes;
+    -- Begin the loop (that 'loop_res' is a label for the loop)
+    loop_res: loop
+        -- When you fetch a row from the cursor, the data from the current
+        -- row is read into the variables, and the cursor advances to the
+        -- next row. If there's no next row, the 'continue handler for not found'
+        -- will set the 'done' variable to 'TRUE'
+        fetch curRes into man_id;
+        -- Exit the loop if you're done
+        if done then
+            leave loop_res;
+        END if;
+        -- Execute your desired query.
+		SELECT COUNT(manuscript_id) INTO num_reviewers FROM reviewer_info WHERE manuscript_id = man_id;
+		IF num_reviewers < 4 THEN
+			UPDATE manuscript SET `man_status`='submitted' WHERE manuscript_id=man_id;
+-- 				SET signal_message = CONCAT('Unfortunately, your paper cannot be considered at this time. Thank you for the submission.');
+-- 				SIGNAL SQLSTATE '45000' SET message_text = signal_message;
+		END IF;
+    END LOOP;
+    -- Don't forget to close the cursor when you finish
+    close curRes;
+END $$
+DELIMITER ;
 -- 
