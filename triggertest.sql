@@ -2,6 +2,12 @@
 -- test triggers for lab 2d
 -- May 2, 2017
 
+
+-- TEST FOR TRIGGER 1:
+-- When an author is submitting a new manuscript to the system with an RICode for which 
+-- there is no reviewer who handles that RICode you should raise an exception that informs 
+-- the author the paper can not be considered at this time.
+
 -- editor
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (101,"Silas","Diaz","editor");
 
@@ -25,7 +31,24 @@ INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (51,53);
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (81,"nonummy","2016-07-14 08:14:49","submitted",53,101);
 
+-- TEST FOR TRIGGER 2:
+-- When a reviewer resigns any manuscript in “UnderReview” state for which that reviewer was the only reviewer, 
+-- that manuscript must be reset to “submitted” state and an apprpriate exception message displayed.
 
+-- note that manuscripts 1, 2, 3, 4, 5 are all "under review"
+SELECT * FROM manuscript; 
+
+-- reviewer 71 is a reviewer for manuscripts 2, 3, and 4
+SELECT * FROM reviewer_info ORDER BY reviewer_person_id ASC;
+
+-- delete reviewer 71 
+DELETE FROM person WHERE `person_id`=71;
+
+-- note that manuscripts 2 and 3 have changed to a "submitted" man_status
+SELECT * FROM manuscript; 
+
+-- manuscript 4 is still "under review" because it still has 3 reviewers
+SELECT * FROM reviewer_info ORDER BY manuscript_id ASC;
 
 
 
