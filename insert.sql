@@ -27,6 +27,7 @@ INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (57,"Zori
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (58,"Bell","Larsen","reviewer");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (59,"Angela","Rivera","reviewer");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (60,"Fay","Chan","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (71,"Montana","Forbes","reviewer");
 
 -- (editors)
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (101,"Silas","Diaz","editor");
