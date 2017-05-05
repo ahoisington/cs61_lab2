@@ -17,6 +17,9 @@ DROP TABLE IF EXISTS manuscript;
 DROP TABLE IF EXISTS RICodes;
 DROP TABLE IF EXISTS person;
 
+DROP VIEW IF EXISTS reviewer_info;
+
+
 --
 -- Table structure for table `person`
 --

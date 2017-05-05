@@ -4,19 +4,28 @@
 
 DROP TRIGGER IF EXISTS check_revRICode;
 DROP TRIGGER IF EXISTS resignedReviewer;
+DROP TABLE IF EXISTS error_logs;
+
+CREATE TABLE    error_logs
+  ( PK MEDIUMINT NOT NULL AUTO_INCREMENT,
+	error_time DATETIME,
+	trigger_num   INT,
+    error_msg VARCHAR (128),
+    PRIMARY KEY (PK)
+  );
 
 -- TRIGGER 1
 DELIMITER ;;
 CREATE TRIGGER check_revRICode BEFORE INSERT ON manuscript 
 FOR EACH ROW 
 BEGIN
+
 	DECLARE num_reviewers INT;
 	DECLARE signal_message VARCHAR(128);
     
 	SET num_reviewers = (SELECT COUNT(RICode) FROM person_to_RICode WHERE RICode = new.RICode GROUP BY RICode);
     IF num_reviewers < 3 THEN
-		SET signal_message = CONCAT('Unfortunately, your paper cannot be considered at this time. Thank you for the submission.');
-		SIGNAL SQLSTATE '45000' SET message_text = signal_message;
+		INSERT INTO error_logs (error_time, trigger_num, error_msg)VALUES(SYSDATE(),1,  CONCAT('Unfortunately, your paper cannot be considered at this time. Thank you for the submission.'));
     END IF;
 END;;
   

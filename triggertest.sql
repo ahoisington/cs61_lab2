@@ -2,7 +2,6 @@
 -- test triggers for lab 2d
 -- May 2, 2017
 
-
 -- TEST FOR TRIGGER 1:
 -- When an author is submitting a new manuscript to the system with an RICode for which 
 -- there is no reviewer who handles that RICode you should raise an exception that informs 
@@ -31,6 +30,7 @@ INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (51,53);
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (81,"nonummy","2016-07-14 08:14:49","submitted",53,101);
 
+
 -- TEST FOR TRIGGER 2:
 -- When a reviewer resigns any manuscript in “UnderReview” state for which that reviewer was the only reviewer, 
 -- that manuscript must be reset to “submitted” state and an apprpriate exception message displayed.
@@ -51,10 +51,8 @@ SELECT * FROM manuscript;
 SELECT * FROM reviewer_info ORDER BY manuscript_id ASC;
 
 
-
-
-
-
+-- outputs errors from trigger1 tests and trigger2 tests.  There should be three errors in the table that results from the following query.
+SELECT * FROM error_logs;
 
 
 
