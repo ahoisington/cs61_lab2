@@ -64,10 +64,10 @@ INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (64,4);
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (65,4);
 
 -- manuscripts under review
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (1,"Kemeny,","2016-07-15 00:51:38","under review",1,102);
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (2,"Sudikoff,","2016-08-15 00:51:38","under review",2,102);
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (3,"Carson,","2016-09-15 00:51:38","under review",3,102);
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (4,"Fairchild,","2016-10-15 00:51:38","under review",4,102);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (1,"Kemeny","2016-07-15 00:51:38","under review",1,102);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (2,"Sudikoff","2016-08-15 00:51:38","under review",2,102);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (3,"Carson","2016-09-15 00:51:38","under review",3,102);
+INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (4,"Fairchild","2016-10-15 00:51:38","under review",4,102);
 
 -- feedback 
 -- manu 1 has RICode 1
