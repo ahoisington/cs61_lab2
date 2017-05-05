@@ -35,8 +35,7 @@ CREATE TRIGGER resignedReviewer BEFORE DELETE ON person FOR EACH ROW
 BEGIN
     DECLARE man_id int;
     DECLARE num_reviewers int;
-	-- DECLARE signal_message VARCHAR(128);
-
+    
     -- Variables related to cursor:
     --    1. 'done' will be used to check if all the rows in the cursor 
     --       have been read
@@ -66,8 +65,7 @@ BEGIN
 		SELECT COUNT(manuscript_id) INTO num_reviewers FROM reviewer_info WHERE manuscript_id = man_id;
 		IF num_reviewers < 4 THEN
 			UPDATE manuscript SET `man_status`='submitted' WHERE manuscript_id=man_id;
--- 				SET signal_message = CONCAT('Unfortunately, your paper cannot be considered at this time. Thank you for the submission.');
--- 				SIGNAL SQLSTATE '45000' SET message_text = signal_message;
+			INSERT INTO error_logs (error_time, trigger_num, error_msg) VALUES (SYSDATE(), 2, Concat('Manuscript #', man_id, ' is no longer under review.'));
 		END IF;
     END LOOP;
     -- Don't forget to close the cursor when you finish
