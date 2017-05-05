@@ -27,7 +27,26 @@ INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (57,"Zori
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (58,"Bell","Larsen","reviewer");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (59,"Angela","Rivera","reviewer");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (60,"Fay","Chan","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (61,"Montana","Forbes","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (62,"Kay","Jensen","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (63,"Rachel","Winters","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (64,"Thor","Simmons","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (65,"Vivian","Shelton","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (66,"Camille","Ryan","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (67,"Zorita","Shields","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (68,"Bell","Larsen","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (69,"Angela","Rivera","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (70,"Fay","Chan","reviewer");
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (71,"Montana","Forbes","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (72,"Kay","Jensen","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (73,"Rachel","Winters","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (74,"Thor","Simmons","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (75,"Vivian","Shelton","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (76,"Camille","Ryan","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (77,"Zorita","Shields","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (78,"Bell","Larsen","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (79,"Angela","Rivera","reviewer");
+INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (80,"Fay","Chan","reviewer");
 
 -- (editors)
 INSERT INTO `person` (`person_id`,`fname`,`lname`,`person_job`) VALUES (101,"Silas","Diaz","editor");
@@ -311,10 +330,90 @@ INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (60,121);
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (58,121);
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (59,121);
 
--- for trigger test 2
+-- for trigger test 2 (these reviewers have 3 RICodes)
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (60,1);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (60,2);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (60,3);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (61,4);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (61,5);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (61,6);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (62,7);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (62,8);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (62,9);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (63,10);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (63,11);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (63,12);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (64,13);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (64,14);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (64,15);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (65,16);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (65,17);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (65,18);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (66,19);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (66,20);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (66,21);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (67,22);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (67,23);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (67,24);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (68,25);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (68,26);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (68,27);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (69,28);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (69,29);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (69,30);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (70,1);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (70,2);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (70,3);
+
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (71,4);
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (71,5);
 INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (71,6);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (72,7);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (72,8);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (72,9);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (73,10);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (73,11);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (73,12);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (74,13);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (74,14);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (74,15);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (75,16);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (75,17);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (75,18);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (76,19);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (76,20);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (76,21);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (77,22);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (77,23);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (77,24);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (78,25);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (78,26);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (78,27);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (79,28);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (79,29);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (79,30);
+
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (80,1);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (80,7);
+INSERT INTO `person_to_RICode` (`person_id`,`RICode`) VALUES (80,32);
 
 -- manuscripts
 -- in typesetting
