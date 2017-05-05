@@ -6,6 +6,8 @@ DROP TRIGGER IF EXISTS check_revRICode;
 DROP TRIGGER IF EXISTS resignedReviewer;
 DROP TABLE IF EXISTS error_logs;
 
+-- table that keeps track of all the errors we test for and the output messages
+-- decided to use a table bc signal error message would stop the rest of triggertest from running
 CREATE TABLE    error_logs
   ( PK MEDIUMINT NOT NULL AUTO_INCREMENT,
 	error_time DATETIME,
@@ -19,10 +21,10 @@ DELIMITER ;;
 CREATE TRIGGER check_revRICode BEFORE INSERT ON manuscript 
 FOR EACH ROW 
 BEGIN
-
 	DECLARE num_reviewers INT;
 	DECLARE signal_message VARCHAR(128);
     
+    -- get num of reviewers with RICode that matches the given manuscript val
 	SET num_reviewers = (SELECT COUNT(RICode) FROM person_to_RICode WHERE RICode = new.RICode GROUP BY RICode);
     IF num_reviewers < 3 THEN
 		INSERT INTO error_logs (error_time, trigger_num, error_msg)VALUES(SYSDATE(),1,  CONCAT('Unfortunately, your paper cannot be considered at this time. Thank you for the submission.'));
