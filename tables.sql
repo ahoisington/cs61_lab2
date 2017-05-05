@@ -199,7 +199,7 @@ CREATE TABLE person_to_affiliation
 	affiliation_code INT NOT NULL,  
 	PRIMARY KEY (person_id, affiliation_code),
 	CONSTRAINT fk_person_to_affiliation FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE,
-    	FOREIGN KEY (affiliation_code) REFERENCES affiliation(affiliation_code)
+	FOREIGN KEY (affiliation_code) REFERENCES affiliation(affiliation_code)
 );
 
 

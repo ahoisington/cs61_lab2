@@ -196,7 +196,7 @@ CREATE TABLE author
 	email VARCHAR(45) NOT NULL ,
 	mailing_address VARCHAR(45) NOT NULL,
     PRIMARY KEY (person_id),
-	FOREIGN KEY (person_id) REFERENCES person(person_id)
+    CONSTRAINT fk_author FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE
 );
 
 --
@@ -207,7 +207,7 @@ CREATE TABLE reviewer
 	person_id INT NOT NULL,
 	email VARCHAR(45) NOT NULL,
     PRIMARY KEY (person_id),
-	FOREIGN KEY (person_id) REFERENCES person(person_id)
+	CONSTRAINT fk_reviewer FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE
 );
 
 --
@@ -217,7 +217,7 @@ CREATE TABLE editor
 (
 	person_id INT NOT NULL,
     PRIMARY KEY (person_id),
-	FOREIGN KEY (person_id) REFERENCES person(person_id)
+	CONSTRAINT fk_editor FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE
 );
 
 --
@@ -228,7 +228,7 @@ CREATE TABLE person_to_RICode
 	person_id INT NOT NULL,
 	RICode MEDIUMINT NOT NULL,
     PRIMARY KEY (person_id, RICode),
-	FOREIGN KEY (person_id) REFERENCES person(person_id),
+	CONSTRAINT fk_person_to_RICode FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE,
 	FOREIGN KEY (RICode) REFERENCES RICodes(RICode)
 );
 
@@ -250,7 +250,7 @@ CREATE TABLE feedback
 	date_completed DATETIME,
 	PRIMARY KEY (manuscript_id, person_id),
 	FOREIGN KEY (manuscript_id) REFERENCES manuscript(manuscript_id),
-	FOREIGN KEY (person_id) REFERENCES person(person_id)
+	CONSTRAINT fk_feedback FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE
 );
 
 --
@@ -276,7 +276,7 @@ CREATE TABLE man_to_author
 	author_order_num INT NOT NULL,
 	PRIMARY KEY (manuscript_id, person_id),
 	FOREIGN KEY (manuscript_id) REFERENCES manuscript(manuscript_id),
-	FOREIGN KEY (person_id) REFERENCES person(person_id)
+	CONSTRAINT fk_man_to_author FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE
 );
 
 --
@@ -290,7 +290,7 @@ CREATE TABLE issue
 	pub_year DATETIME,
 	person_id INT NOT NULL,   
 	PRIMARY KEY (issue_id),
-	FOREIGN KEY (person_id) REFERENCES person(person_id)
+	CONSTRAINT fk_issue FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE
 );
 
 
@@ -326,7 +326,7 @@ CREATE TABLE person_to_affiliation
 	person_id INT NOT NULL,  
 	affiliation_code INT NOT NULL,  
 	PRIMARY KEY (person_id, affiliation_code),
-	FOREIGN KEY (person_id) REFERENCES person(person_id),
+	CONSTRAINT fk_person_to_affiliation FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE,
     FOREIGN KEY (affiliation_code) REFERENCES affiliation(affiliation_code)
 );
 
