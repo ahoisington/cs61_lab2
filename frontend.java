@@ -8,32 +8,35 @@ import java.sql.*;
 public class frontend {
     public static final String SERVER   = "jdbc:mysql://sunapee.cs.dartmouth.edu/";
     public static final String USERNAME = "acaciah";
-    public static final String PASSWORD = "Wolf1223";
+    public static final String PASSWORD = "Password1";
     public static final String DATABASE = "acaciah_db";
-    public static final String QUERY    = "SELECT * FROM person;";
 
     public static void main(String[] args) {
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet res  = null;
 		int numColumns = 0;
+		String query = null;
 
 		// attempt to connect to db
 		try {
 		    // load mysql driver
 		    Class.forName("com.mysql.jdbc.Driver").newInstance();
-		    
+
 		    // initialize connection
 		    con = DriverManager.getConnection(SERVER+DATABASE, USERNAME, PASSWORD);
-		    
 		    System.out.println("Connection established.");
+
+
+
+
+
 
 		    // initialize a query statement
 		    stmt = con.createStatement();
 
 		    // query db and save results
-		    res = stmt.executeQuery(QUERY);
-
+		    res = stmt.executeQuery(query);
 		    System.out.format("Query executed: '%s'\n\nResults:\n", QUERY);
 		    
 		    // the result set contains metadata
@@ -66,4 +69,9 @@ public class frontend {
 		    } catch (Exception e) { /* ignore cleanup errors */ }
 		}
     }
+
+
+
+
+
 }
