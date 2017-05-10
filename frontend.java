@@ -19,7 +19,7 @@ public class frontend {
 		Statement stmt = null;
 		ResultSet res  = null;
 		int numColumns = 0;
-		ArrayList<String> query = null;
+		ArrayList<String> query = new ArrayList<String>();
 
 		// CONNECT TO DB
 		try {
@@ -47,7 +47,7 @@ public class frontend {
 
 	               	String[] request = input.split(" ");
 	               	
-
+	               	String q = "SELECT MAX(person_id) FROM person;";
 
 
 
@@ -57,17 +57,18 @@ public class frontend {
 	               		String person_job = request[1];
 	               		if (person_job.equals("author") && author_register(req_to_check)){
 	               			//run register sql query to insert
-	               			query.add("SELECT MAX(person_id) FROM person");
+	               			query.add("SELECT MAX(person_id) FROM person;");
 	               			stmt = con.createStatement();
 	               			res = stmt.executeQuery(query.get(0));
+							if (res.next()){
+								System.out.println(res.getObject(1));
+							}
 
-	               			System.out.println(res.getObject(0));
 	               			query.add("INSERT INTO person_id (`fname`,`lname`,`person_job`) VALUES (" + request[2] + ", "+ request[3] +", 'author');");
-	               			
 
 	               		} else if (person_job.equals("reviewer") && reviewer_register(req_to_check)){
 	               			//run register sql query to insert
-	               			
+
 	               		} else if (person_job.equals("editor") && editor_register(req_to_check)){
 	               			//run register sql query to insert
 	               		} else {
@@ -92,6 +93,7 @@ public class frontend {
 
 				    // QUERY DB. SAVE RESULTS
 				    res = stmt.executeQuery(query.get(0));
+				    // res = stmt.executeQuery(q);
 				    System.out.format("Query executed: '%s'\n\nResults:\n", query);
 				    // System.out.println("results " +res.getObject(1));
 				    // RESULT SET CONTAINS META DATA
