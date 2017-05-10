@@ -27,7 +27,8 @@ BEGIN
     -- get num of reviewers with RICode that matches the given manuscript val
 	SET num_reviewers = (SELECT COUNT(RICode) FROM person_to_RICode WHERE RICode = new.RICode GROUP BY RICode);
     IF num_reviewers < 3 THEN
-		INSERT INTO error_logs (error_time, trigger_num, error_msg)VALUES(SYSDATE(),1,  CONCAT('Unfortunately, your paper cannot be considered at this time. Thank you for the submission.'));
+		SET signal_message = CONCAT('Unfortunately, your paper cannot be considered at this time. Thank you for the submission.');
+ 		SIGNAL SQLSTATE '45000' SET message_text = signal_message;
     END IF;
 END;;
   
