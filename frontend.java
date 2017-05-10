@@ -19,7 +19,7 @@ public class frontend {
 		Statement stmt = null;
 		ResultSet res  = null;
 		int numColumns = 0;
-		String query = null;
+		ArrayList<String> query = null;
 
 		// CONNECT TO DB
 		try {
@@ -46,15 +46,28 @@ public class frontend {
 	                } 
 
 	               	String[] request = input.split(" ");
+	               	
+
+
+
+
 
 	               	if (request[0].equals("register")){
 	               		String[] req_to_check = Arrays.copyOfRange(request,2,request.length);
-	               		System.out.println("req_to_check is " + Arrays.toString(req_to_check));
-	               		if (request[1].equals("author") && author_register(req_to_check)){
+	               		String person_job = request[1];
+	               		if (person_job.equals("author") && author_register(req_to_check)){
 	               			//run register sql query to insert
-	               		} else if (request[1].equals("reviewer") && reviewer_register(req_to_check)){
-	               			//run register sql query to insert	
-	               		} else if (request[1].equals("editor") && editor_register(req_to_check)){
+	               			query.add("SELECT MAX(person_id) FROM person");
+	               			stmt = con.createStatement();
+	               			res = stmt.executeQuery(query.get(0));
+	               			new_pID = 
+	               			System.out.println(res.getObject(0));
+	               			query.add("INSERT INTO person_id (`fname`,`lname`,`person_job`) VALUES (" + request[2] + ", "+ request[3] +", 'author');");
+	               			
+
+	               		} else if (person_job.equals("reviewer") && reviewer_register(req_to_check)){
+	               			//run register sql query to insert
+	               		} else if (person_job.equals("editor") && editor_register(req_to_check)){
 	               			//run register sql query to insert
 	               		} else {
 	               			System.err.println("Input error: Make sure your request to register follows the correct format. Read documentation or input -h or --help for guidance.");
@@ -71,13 +84,13 @@ public class frontend {
 
 				    //////////////////////////////////////////////////////////////
 
-	                query = "SELECT * FROM person;";
+	                
 
 				    // INITIALIZE QUERY STATEMENT
 				    stmt = con.createStatement();
 
 				    // QUERY DB. SAVE RESULTS
-				    res = stmt.executeQuery(query);
+				    res = stmt.executeQuery(query.get(0));
 				    System.out.format("Query executed: '%s'\n\nResults:\n", query);
 				    // System.out.println("results " +res.getObject(1));
 				    // RESULT SET CONTAINS META DATA
@@ -148,78 +161,19 @@ public class frontend {
      *
      */
     public static boolean  author_register (String[] req){
-    	if (req.length == 4){
-			if (isEmailAddress(req[2]) && isInteger(req[4])){  //email && affiliation code
-				return true;
-			} else {
-				System.err.println("Input error: incorrect formatting of values");
-				System.exit(1);  //HALP ERROR OCCURS SO FUNC SHOULD END EVERYTHING. IS THIS CORRECT THING TO DO? EVEN THOU
-								//IT DOESNT CLOSE THE BUFFREADER OR SQLDRIVER
-				return false; //HALP ERROR OCCURS SO FUNC SHOULD END EVERYTHING 
-			}
-    	} else {
-    		System.err.println("Input error: invalid number of input vals");
-    		System.exit(1);
-    	}
-    	return false;
+        if (req.length == 5){
+            if (isEmailAddress(req[2]) && isInteger(req[4])){  //email && affiliation code
+                return true;
+            } else {
+                System.err.println("Input error: incorrect formatting of values");
+                System.exit(1); 
+            }
+        } else {
+            System.err.println("Input error: invalid number of input vals");
+            System.exit(1);
+        }
+        return false;
     } 
-
-
-
-
-// //LOL THIS CHECKS IF THE VALUES IN A STRING ARRAY ARE STRINGS. *facepalm* (unless elisabeth thinks this is fine haha)
-//     /*
-//      *
-//      * author_register checks if format of register-author request is correct. returns boolean.	
-//      * true if format is:	 <fname> <lname> <email> <address> <affiliation>
-//      *
-//      */
-//     public static boolean  author_register (String[] reg){
-//     	if (reg.length == 4){
-// 			if (reg[0].isString() && //fname
-// 				reg[1].isString() && //lname
-// 				isEmailAddress(reg[2]) && //email
-// 				reg[3].isString() &&	//address
-// 				reg[4].isInteger()){ //affiliation
-// 				return true;
-// 			} else {
-// 				System.err.println("Input error: invalid number of input vals");
-// 				System.exit(1);  //HALP ERROR OCCURS SO FUNC SHOULD END EVERYTHING. IS THIS CORRECT THING TO DO? EVEN THOU
-// 								//IT DOESNT CLOSE THE BUFFREADER OR SQLDRIVER
-// 				return false; //HALP ERROR OCCURS SO FUNC SHOULD END EVERYTHING 
-// 			}
-//     	} else {
-//     		System.err.println("Input error: invalid number of input vals");
-//     		System.exit(1);
-//     	}
-//     } 
-    	
-        /*
-   //   *
-   //   * reviewer_register checks if format of register-author request is correct. returns boolean.	
-   //   * true if format is:	 <fname> <lname> <email> <address>
-   //   * reg[0] is author, editor or reviewer. 
-   //   *
-   //   */
-   //  public static boolean  reviewer_register (String[] reg){
-   //  	if (reg.length >= 4 && reg.length <= 7){
-			// if (reg[0].isString() && //fname
-			// 	reg[1].isString() && //lname
-			// 	isEmailAddress(reg[2]) && //email
-			// 	reg[3].isInteger()){ //affiliationCode
-			// 	return true;
-			// } else {
-			// 	System.err.println("Input error: invalid number of input vals");
-			// 	System.exit(1);  //HALP ERROR OCCURS SO FUNC SHOULD END EVERYTHING. IS THIS CORRECT THING TO DO? EVEN THOU
-			// 					//IT DOESNT CLOSE THE BUFFREADER OR SQLDRIVER
-			// 	return false; //HALP ERROR OCCURS SO FUNC SHOULD END EVERYTHING 
-			// }
-   //  	} else {
-   //  		System.err.println("Input error: invalid number of input vals");
-   //  		System.exit(1);
-   //  	}
-   //  } 
-
 
     /*
     *
@@ -228,14 +182,26 @@ public class frontend {
     *
     */
     public static boolean reviewer_register (String[] req){
-    	if (req.length >= 4 && req.length<= 7){
-			if (isEmailAddress(req[2]) && isInteger(req[4]) && isInteger(req[5]) && isInteger(req[6]) && isInteger(req[7]) ){  //email && affiliation code and RICodes
+    	if (req.length == 5){ // 1 RICode submitted
+			if (isEmailAddress(req[2]) && isInteger(req[3])&& isInteger(req[4])  ){  //email && affiliation code and RICodes
 				return true;
 			} else {
 				System.err.println("Input error: incorrect formatting of values");
-				System.exit(1);  //HALP ERROR OCCURS SO FUNC SHOULD END EVERYTHING. IS THIS CORRECT THING TO DO? EVEN THOU
-								//IT DOESNT CLOSE THE BUFFREADER OR SQLDRIVER
-				return false; //HALP ERROR OCCURS SO FUNC SHOULD END EVERYTHING 
+				System.exit(1); 
+			}
+    	} else if (req.length == 6){ // 2 RICodes submitted
+    		if (isEmailAddress(req[2]) && isInteger(req[3]) && isInteger(req[4]) && isInteger(req[5])){  //email && affiliation code and RICodes
+				return true;
+			} else {
+				System.err.println("Input error: incorrect formatting of values");
+				System.exit(1); 
+			}
+    	} else if (req.length == 7){ //  3 RICodes submitted
+    		if (isEmailAddress(req[2]) && isInteger(req[3]) && isInteger(req[4]) && isInteger(req[5]) && isInteger(req[6]) ){  //email && affiliation code and RICodes
+				return true;
+			} else {
+				System.err.println("Input error: incorrect formatting of values");
+				System.exit(1); 
 			}
     	} else {
     		System.err.println("Input error: invalid number of input vals");
@@ -243,7 +209,6 @@ public class frontend {
     	}
     	return false;
     } 
-
 
     /*
     *
@@ -265,7 +230,6 @@ public class frontend {
     	}
     	return false;
     } 
-    	
 
    	/*
    	 *

@@ -1,0 +1,34 @@
+
+
+
+register author fname lname email address affiliation
+
+INSERT INTO person_id (`fname`,`lname`,`person_job`) VALUES (_____, ______, 'author');
+// maybe take the max of person_id and increment outside of table because otherwise will have issues
+INSERT INTO author ('person_id','email', 'mailing_address') VALUES (_____,_____,_____);
+INSERT INTO person_to_affiliation ('person_id', 'affilicationCode') VALUES (____,____);
+
+
+register reviewer fname lname email affiliation RICode1 RICode2 RICode3
+INSERT INTO person_id (`fname`,`lname`,`person_job`) VALUES (_____, ______, 'reviewer');
+INSERT INTO reviewer ('person_id','email') VALUES (_____,_____);
+INSERT INTO person_to_affiliation ('person_id', 'affilicationCode') VALUES (____,____);  
+INSERT INTO person_to_RICode ('person_id', 'RICode') VALUES (____,____);  
+
+register editor fname lname 
+INSERT INTO person_id (`fname`,`lname`,`person_job`) VALUES (_____, ______, 'editor');
+INSERT INTO editor ('person_id') VALUES (_____);
+
+
+LOGINS
+
+login person_id (of author)
+("SELECT person_job FROM person WHERE person_id == $d", Integer.parseInt(______))
+if person_job is author,
+	output is (     )
+
+
+
+
+
+
