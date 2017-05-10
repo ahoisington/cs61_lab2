@@ -60,13 +60,14 @@ public class frontend {
 	               			query.add("SELECT MAX(person_id) FROM person");
 	               			stmt = con.createStatement();
 	               			res = stmt.executeQuery(query.get(0));
-	               			new_pID = 
+
 	               			System.out.println(res.getObject(0));
 	               			query.add("INSERT INTO person_id (`fname`,`lname`,`person_job`) VALUES (" + request[2] + ", "+ request[3] +", 'author');");
 	               			
 
 	               		} else if (person_job.equals("reviewer") && reviewer_register(req_to_check)){
 	               			//run register sql query to insert
+	               			
 	               		} else if (person_job.equals("editor") && editor_register(req_to_check)){
 	               			//run register sql query to insert
 	               		} else {
@@ -218,7 +219,7 @@ public class frontend {
     */
     public static boolean editor_register (String[] req){
     	if (req.length == 3){
-			if (isEmailAddress(req[2])){  //email && affiliation code and RICodes
+			if (isEmailAddress(req[2])){  //email 
 				return true;
 			} else {
 				System.err.println("Input error: incorrect formatting of input vals.");
