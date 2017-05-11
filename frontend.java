@@ -9,9 +9,9 @@ import java.util.*;
 
 public class frontend {
     public static final String SERVER   = "jdbc:mysql://sunapee.cs.dartmouth.edu/";
-    public static final String USERNAME = "acaciah";
-    public static final String PASSWORD = "Password1";
-    public static final String DATABASE = "acaciah_db";
+    public static final String USERNAME = "epills";
+    public static final String PASSWORD = "happyKale44";
+    public static final String DATABASE = "epills_db";
 
 
     public static void main(String[] args) {
@@ -19,7 +19,7 @@ public class frontend {
 		Statement stmt = null;
 		ResultSet res  = null;
 		int numColumns = 0;
-		ArrayList<String> query = new ArrayList<String>();
+		String query = "";
 
 		// CONNECT TO DB
 		try {
@@ -30,7 +30,7 @@ public class frontend {
 		    con = DriverManager.getConnection(SERVER+DATABASE, USERNAME, PASSWORD);
 		    System.out.println("Connection established.");
 
-		    //TAKE IN USeR INPUT
+		    //TAKE IN USER INPUT
 	        BufferedReader buffReader = null;
 	        try {
 	            buffReader = new BufferedReader(new InputStreamReader(System.in));
@@ -49,22 +49,20 @@ public class frontend {
 	               	
 	               	String q = "SELECT MAX(person_id) FROM person;";
 
-
-
-
 	               	if (request[0].equals("register")){
 	               		String[] req_to_check = Arrays.copyOfRange(request,2,request.length);
 	               		String person_job = request[1];
 	               		if (person_job.equals("author") && author_register(req_to_check)){
 	               			//run register sql query to insert
-	               			query.add("SELECT MAX(person_id) FROM person;");
+	               			query = "SELECT MAX(person_id) FROM person;";
 	               			stmt = con.createStatement();
-	               			res = stmt.executeQuery(query.get(0));
+	               			res = stmt.executeQuery(query);
+
 							if (res.next()){
 								System.out.println(res.getObject(1));
 							}
 
-	               			query.add("INSERT INTO person_id (`fname`,`lname`,`person_job`) VALUES (" + request[2] + ", "+ request[3] +", 'author');");
+	               			query = "INSERT INTO person_id (`fname`,`lname`,`person_job`) VALUES (" + request[2] + ", "+ request[3] +", 'author');";
 
 	               		} else if (person_job.equals("reviewer") && reviewer_register(req_to_check)){
 	               			//run register sql query to insert
@@ -76,6 +74,159 @@ public class frontend {
 	               			System.exit(1);
 	               		}
 	               	}
+
+	               	// we expect: login <person_id>
+	               	else if (request[0].equals("login")){
+
+	               		String person_id = request[1];
+	               		String person_job="";
+
+	               		// make sure person_id is an integer
+	               		if (!isInteger(person_id)) {
+
+	               			System.err.println("Invalid ID.");
+							System.exit(1);
+	               		
+	               		}
+
+               			// retrieve information about this person
+               			query = ("SELECT * FROM person WHERE person_id=" + person_id + ";");
+               			stmt = con.createStatement();
+               			res = stmt.executeQuery(query);
+
+						if (res.next()){
+
+							person_job = res.getString(4);
+
+							// change this greeting?
+							System.out.println("\nWelcome to your " + person_job + " page.\n");
+							System.out.println(res.getString(2) +  " " + res.getString(3));
+
+						} else {
+
+							System.err.println("Invalid ID. ha");
+							System.exit(1);
+
+						}
+
+
+	               		if (person_job.equals("author")){
+
+	               			// retrieve author specific information
+							query = ("SELECT * FROM author WHERE person_id=" + person_id + ";");		           			
+							stmt = con.createStatement();
+		           			res = stmt.executeQuery(query);
+
+		           			if (res.next()){
+		           				System.out.println(res.getString(3) + "\n"); // mailing address
+		           			}
+
+	               			// retrieve author's manuscript information
+							query = ("SELECT * FROM LeadAuthorManuscripts WHERE person_id=" + person_id + " ORDER BY manuscript_id ASC;");		           			
+							stmt = con.createStatement();
+		           			res = stmt.executeQuery(query);
+
+		           			// NEED TO GROUP BY # SUBMITTED ETC ETC????? ASK ACACIA
+		       			    while(res.next()) { 		
+	           			    	System.out.format("#%-5s", res.getObject(6)); // manuscript_id
+
+	           					for(int i = 7; i <= 9; i++) {
+	           					    System.out.format("%-30s", res.getObject(i)); // title, man_status, date_submitted
+	           					}
+
+	           					System.out.println("");
+	           			    }
+
+	           			    // NOW THAT WE'RE LOGGED IN, WE HAVE A COUPLE OF OPTIONS
+
+	           			    // big while loop that prompts author for requests
+
+	           			    // we expect: submit <title> <affiliation> <ricode> <author2> <author3> <author4> <filename>
+	           			    // if (request[0].equals("submit"))
+	           			    	// notes: 
+	           			    		// create a brand new manuscript_id
+	           			    		// additional authors are optional....
+
+	           			    // we expect: review-reject <manuscript_id> <appropriateness> <clarity> <methodology> <contribution to field> 
+	           			    // if (request[0].equals("review-reject"))
+	           			    	// note: cannot reject a manuscript that doesn't belong to this reviewer
+
+	           			    // we expect: status
+	           			    // if (request[0].equals("status"))
+	           			    	// return the summary info for all manuscripts associated with this author as primary
+
+
+	               		} else if (person_job.equals("reviewer")){
+
+	               			// retrieve editor's manuscript information (should these be ALL manuscripts or only the ones overseen by this editor???)
+							query = ("SELECT * FROM ReviewerManuscripts WHERE reviewer_id=" + person_id + " ORDER BY man_status DESC, manuscript_id ASC;");		           			
+							stmt = con.createStatement();
+		           			res = stmt.executeQuery(query);
+
+		           			System.out.println("");
+
+	           			    while(res.next()) { 		
+	           			    	System.out.format("#%-5s", res.getObject(1)); // manuscript_id
+
+	           					for(int i = 3; i <= 5; i++) {
+	           					    System.out.format("%-30s", res.getObject(i)); // title, man_status, date_submitted
+	           					}
+
+	           					System.out.println("");
+	           			    }
+
+	           			    // NOW THAT WE'RE LOGGED IN, WE HAVE A COUPLE OF OPTIONS
+
+	           			    // big while loop that prompts reviewer for requests
+
+	           			    // we expect: review-accept <manuscript_id> <appropriateness> <clarity> <methodology> <contribution to field>
+	           			    // if (request[0].equals("review-accept"))
+	           			    	// note: cannot accept a manuscript that doesn't belong to this reviewer
+
+	           			    // we expect: review-reject <manuscript_id> <appropriateness> <clarity> <methodology> <contribution to field> 
+	           			    // if (request[0].equals("review-reject"))
+	           			    	// note: cannot reject a manuscript that doesn't belong to this reviewer
+
+	           			    // doesn't explicitly say this but I think we should include it....
+	           			    // we expect: status
+	           			    // if (request[0].equals("status"))
+	           			    	// return the summary info for all manuscripts associated with this reviewer
+
+
+	               		} else if (person_job.equals("editor")){
+
+	               			// retrieve editor's manuscript information (should these be ALL manuscripts or only the ones overseen by this editor???)
+							query = ("SELECT * FROM LeadAuthorManuscripts WHERE editor_id=" + person_id + " ORDER BY man_status DESC, manuscript_id ASC;");		           			
+							stmt = con.createStatement();
+		           			res = stmt.executeQuery(query);
+
+		           			System.out.println("");
+
+	           			    while(res.next()) { 		
+	           			    	System.out.format("#%-5s", res.getObject(6)); // manuscript_id
+
+	           					for(int i = 7; i <= 9; i++) {
+	           					    System.out.format("%-30s", res.getObject(i)); // title, man_status, date_submitted
+	           					}
+
+	           					System.out.println("");
+	           			    }
+
+	               		} else {
+	               			// this should never happen! Just in case, though :)
+	               			System.err.println("Input error: Make sure your request to login follows the correct format. Read documentation or input -h or --help for guidance.");
+	               			System.exit(1);
+	               		}
+
+	               	// // we expect: resign <person_id>
+	               	// } else if (request[0].equals("resign")){
+	               	// 	// ONLY REVIEWERS CAN DO THIS!
+
+	               	} else {
+	               		System.err.println("Invalid request.");
+	               		System.exit(1);
+	               	}
+
 
 
 
@@ -92,9 +243,9 @@ public class frontend {
 				    stmt = con.createStatement();
 
 				    // QUERY DB. SAVE RESULTS
-				    res = stmt.executeQuery(query.get(0));
+				    res = stmt.executeQuery(query);
 				    // res = stmt.executeQuery(q);
-				    System.out.format("Query executed: '%s'\n\nResults:\n", query);
+				    System.out.format("\n\n\n\nQuery executed: '%s'\n\nResults:\n", query);
 				    // System.out.println("results " +res.getObject(1));
 				    // RESULT SET CONTAINS META DATA
 				    numColumns = res.getMetaData().getColumnCount();
