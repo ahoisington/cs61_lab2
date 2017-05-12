@@ -2,7 +2,7 @@
 -- create tables for lab 2c
 -- April 22, 2017
 
-USE acaciah_db;
+USE epills_db;
 SHOW TABLES;
 
 DROP TABLE IF EXISTS author;
@@ -121,7 +121,7 @@ CREATE TABLE feedback
 	recommendation VARCHAR(45),
 	date_completed DATETIME,
 	PRIMARY KEY (manuscript_id, person_id),
-	FOREIGN KEY (manuscript_id) REFERENCES manuscript(manuscript_id),
+	CONSTRAINT fk_manu_feedback FOREIGN KEY (manuscript_id) REFERENCES manuscript(manuscript_id) ON DELETE CASCADE,
 	CONSTRAINT fk_feedback FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE
 );
 
@@ -134,7 +134,8 @@ CREATE TABLE accepted_man
 	date_of_acceptance DATETIME NOT NULL,
 	num_pages INT,
 	PRIMARY KEY (manuscript_id),
-	FOREIGN KEY (manuscript_id) REFERENCES manuscript(manuscript_id)
+	CONSTRAINT fk_accepted_man FOREIGN KEY (manuscript_id) REFERENCES manuscript(manuscript_id) ON DELETE CASCADE
+
 );
 
 
@@ -147,7 +148,7 @@ CREATE TABLE man_to_author
 	person_id INT NOT NULL,
 	author_order_num INT NOT NULL,
 	PRIMARY KEY (manuscript_id, person_id),
-	FOREIGN KEY (manuscript_id) REFERENCES manuscript(manuscript_id),
+	CONSTRAINT fk_manu_man_to_author FOREIGN KEY (manuscript_id) REFERENCES manuscript(manuscript_id) ON DELETE CASCADE,
 	CONSTRAINT fk_man_to_author FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE
 );
 
@@ -176,7 +177,7 @@ CREATE TABLE issue_to_man
 	page_num INT,
 	position_in_issue INT,
 	PRIMARY KEY (manuscript_id),
-	FOREIGN KEY (manuscript_id) REFERENCES manuscript(manuscript_id),
+	CONSTRAINT fk_issue_to_man FOREIGN KEY (manuscript_id) REFERENCES manuscript(manuscript_id) ON DELETE CASCADE,
 	FOREIGN KEY (issue_id) REFERENCES issue(issue_id)
 );
 
