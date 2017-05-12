@@ -406,7 +406,6 @@ public class frontend {
             				System.err.println("Reviewer " + reviewer_id + " cannot be assigned to Manuscript #" + manu_id + ".");
             				System.exit(1);
             			}		
-            			System.out.println(res.getString(1));
 
        			    	// get today's date
        			    	String currentTime = getDate();
@@ -523,7 +522,7 @@ public class frontend {
             			System.out.println("Manuscript #" + manu_id + " is " + pp + " pages long.");
 
    			    	/* ------------- SCHEDULE ------------- */
-   			    	// we expect: schedule <manu_id> <issue>
+   			    	// we expect: schedule <manu_id> <issue_id>
    			    	} else if (request[0].equals("schedule") && mode.equals("editor")) {
 
    			    		if (num_args != 3) {
@@ -532,18 +531,74 @@ public class frontend {
    			    		}
 
 	               		String manu_id = request[1];
-	               		String issue = request[2];
+	               		String issue_id = request[2];
+	               		String num_pages = "";
+	               		String num_mans_in_issue = "";
 
 	               		// make sure manu_id and issue are integers
-	               		if ( !isInteger(manu_id) || !isInteger(issue) ) {
+	               		if ( !isInteger(manu_id) || !isInteger(issue_id) ) {
 
 	               			System.err.println("Arguments must be integers.");
 							System.exit(1);
 	               		
 	               		}
 
+	               		// check to see if manuscript has been typeset, if so, get number of pages
+	               		query = ("SELECT num_pages FROM accepted_man WHERE manuscript_id=" + manu_id + ";");
+
+	               		System.out.println(query);
+
+	               		stmt = con.createStatement();
+            			res = stmt.executeQuery(query);
+
+            			if (res.next()) {
+            				if (res.getString(1) == null) {
+	            				System.err.println("Manuscript #" + manu_id + " has not been typeset yet and cannot be scheduled.");
+	            				System.exit(1);
+            				}
+            				num_pages = res.getString(1);
+            				System.out.println(num_pages);
+
+            			} else {
+		        			System.err.println("Manuscript #" + manu_id + " has not been typeset yet and cannot be scheduled.");
+		        			System.exit(1);	
+            			}
+
+            			// check to see how full the issue is?
+            			query = ("SELECT SUM(page_num), COUNT(manuscript_id) FROM issue_to_man WHERE issue_id=" + issue_id + ";");
+
+	               		stmt = con.createStatement();
+	        			res = stmt.executeQuery(query);
+
+	        			if (res.next()) {
+
+	        				// would the issue have more than 100 pages if this manuscript were added?
+	        				if ( (Integer.parseInt(num_pages) + Integer.parseInt(res.getString(1))) > 100 ) {
+	        					System.err.println("Issue #" + issue_id + " is too full. Cannot fit manuscript #" + manu_id + " in this issue.");
+	        					System.exit(1);	
+	        				}
+	        				num_mans_in_issue = res.getString(2);
+            				System.out.println(num_mans_in_issue);
+
+	        			// select didn't return anything - issue doesn't exist
+	        			} else { 
+	        				System.err.println("Issue #" + issue_id + " does not exist.");
+	        				System.exit(1);	
+	        			}
+
+	        			String pos_in_issue = String.valueOf(Integer.parseInt(num_mans_in_issue) + 1);
+
+						// insert manuscript information into issue_to_man
+ 						query = ("INSERT INTO `issue_to_man` (`manuscript_id`,`issue_id`,`page_num`,`position_in_issue`) VALUES (" + manu_id + "," + issue_id + "," + num_pages + "," + pos_in_issue + ");");
+
+ 						stmt = con.createStatement();
+            			stmt.executeUpdate(query);
+
+            			System.out.println(query);
+            			System.out.println("Manuscript #" + manu_id + " is at position " + pos_in_issue + " in issue #" + issue_id + ".");	
+
 		    		/* ------------- PUBLISH ------------- */
-		    		// we expect: status <issue>
+		    		// we expect: status <issue_id>
 		    		} else if (request[0].equals("publish") && mode.equals("editor")) {
 
 		    			if (num_args != 2) {
@@ -551,16 +606,28 @@ public class frontend {
 		    				System.exit(1);
 		    			}
 
-	               		String issue = request[1];
+	               		String issue_id = request[1];
 
 	               		// make sure issue is an integer
-	               		if ( !isInteger(issue) ) {
+	               		if ( !isInteger(issue_id) ) {
 
 	               			System.err.println("Invalid issue ID.");
 							System.exit(1);
 	               		
 	               		}
-	
+
+	               		// get today's date
+            			String currentTime = getDate();
+
+						// update manuscript information into issue_to_man
+ 						query = ("UPDATE issue SET `print_date`=" + currentTime + " WHERE issue_id=" + issue_id + ");");
+
+ 						stmt = con.createStatement();
+            			stmt.executeUpdate(query);
+
+            			System.out.println("Issue #" + issue_id + " has been published.");
+
+	               		// trigger 3 will set all associated manuscripts to published!	
            			         			    
            		    /* --------------------------------------- REVIEWER OPTIONS --------------------------------------- */
            		    /* ------------- REVIEW ------------- */

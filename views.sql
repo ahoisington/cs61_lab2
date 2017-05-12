@@ -39,7 +39,7 @@ FROM person
 ORDER BY lname ASC, date_submitted ASC;
 
 --
--- reviewer_info: helper for ReviewQueue. needed because no other way to differentiate author fname and reviewer fname
+-- ReviewerManuscripts: information on the manuscripts for each reviewer
 -- 
 CREATE VIEW ReviewerManuscripts
 AS
