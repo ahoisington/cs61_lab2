@@ -3,6 +3,7 @@
 -- April 24, 2017
 
 DROP VIEW IF EXISTS LeadAuthorManuscripts;
+DROP VIEW IF EXISTS ReviewerManuscripts;
 DROP VIEW IF EXISTS AnyAuthorManuscripts;
 DROP VIEW IF EXISTS PublishedIssues;
 DROP VIEW IF EXISTS author_info;
@@ -14,14 +15,42 @@ DROP VIEW IF EXISTS ReviewStatus;
 --
 -- LeadAuthorManuscripts: information about primary author for manuscripts 
 -- 
+-- CREATE VIEW LeadAuthorManuscripts
+-- AS
+-- SELECT man_to_author.person_id AS person_id, fname, lname, email, mailing_address, manuscript.manuscript_id AS manuscript_id, title, man_status, date_submitted
+-- FROM person 
+-- JOIN manuscript ON person.person_id = manuscript.person_id
+-- JOIN author ON person.person_id = author.person_id
+-- JOIN man_to_author ON man_to_author.person_id = author.person_id AND author_order_num = 1
+-- ORDER BY lname ASC, date_submitted ASC;
+
 CREATE VIEW LeadAuthorManuscripts
 AS
-SELECT man_to_author.person_id AS person_id, fname, lname, email, mailing_address, manuscript.manuscript_id AS manuscript_id, title, man_status, date_submitted
+SELECT 	
+	man_to_author.person_id AS person_id, 
+    fname, lname, email, mailing_address, 
+    manuscript.manuscript_id AS manuscript_id, 
+    title, man_status, date_submitted,
+	manuscript.person_id AS editor_id
 FROM person 
-JOIN manuscript ON person.person_id = manuscript.person_id
-JOIN author ON person.person_id = author.person_id
-JOIN man_to_author ON man_to_author.person_id = author.person_id AND author_order_num = 1
+ 	JOIN author ON person.person_id = author.person_id
+	JOIN man_to_author ON author.person_id = man_to_author.person_id AND author_order_num = 1
+    JOIN manuscript ON man_to_author.manuscript_id = manuscript.manuscript_id
 ORDER BY lname ASC, date_submitted ASC;
+
+--
+-- reviewer_info: helper for ReviewQueue. needed because no other way to differentiate author fname and reviewer fname
+-- 
+CREATE VIEW ReviewerManuscripts
+AS
+SELECT 
+	manuscript.manuscript_id AS manuscript_id, 
+    feedback.person_id AS reviewer_id,
+	title,
+    man_status, 
+    date_submitted
+FROM feedback
+	JOIN manuscript ON feedback.manuscript_id = manuscript.manuscript_id;
 
 --
 -- AnyAuthorManuscripts: information about all authors for manuscripts 
