@@ -32,6 +32,7 @@ public class frontend {
 		    // INIT CONNECTION
 		    con = DriverManager.getConnection(SERVER+DATABASE, USERNAME, PASSWORD);
 		    System.out.println("Connection established.");
+		    System.out.println("Welcome! To continue, please login, register, or resign.");
 
 		    //TAKE IN USER INPUT
 	        BufferedReader buffReader = null;
@@ -40,6 +41,11 @@ public class frontend {
 	        try {
 	            buffReader = new BufferedReader(new InputStreamReader(System.in));
 	            while (true) {
+
+	            	// mode-dependant greeting
+	            	if (!mode.equals("initial")) {
+	            		System.out.print("You are logged in as an " + mode + ".  ");
+	            	}
 
 	                System.out.print("Enter your request: "); 	// ASK USER FOR INPUT
 	                String input = buffReader.readLine();
@@ -50,35 +56,212 @@ public class frontend {
 	               		break; //leave buffReader loop. then prog will close connection to MySQL server
 	                } 
 
-	               	String[] request = input.split(" ");
+	               	String[] request = input.split(", ");
 
 	               	int num_args = request.length;
 
 	               	
-	               	/* ----------------------------------------------------- REGISTER ----------------------------------------------------- */
+	               	/* ----------------------------------------------------- REGISTER ----------------------------------------------------- */ 
+
 	               	if (request[0].equals("register") && mode.equals("initial")){
-	               		String[] req_to_check = Arrays.copyOfRange(request,2,request.length);
-	               		person_job = request[1];
-	               		if (person_job.equals("author") && author_register(req_to_check)){
-	               			//run register sql query to insert
+
+		               	person_job = request[1];	          
+	               		
+	               		// we expect: register author <fname> <lname> <email> <address> <affiliationcode>
+	               		if (person_job.equals("author")) {
+
+		               		if (num_args != 7) {
+	       			    		System.err.println("Incorrect number of arguments.");
+	       			    		System.exit(1);
+	       			    	}
+
+	       			    	String fname = request[2];
+	       			    	String lname = request[3];
+	       			    	String email = request[4];
+	       			    	String address = request[5];
+	       			    	String affiliationcode = request[6];
+
+		               		// make sure email is valid
+		               		if (!isEmailAddress(email)) {
+
+		               			System.err.println("Invalid email address.");
+								System.exit(1);
+		               		
+		               		}
+
+		               		if (!isInteger(affiliationcode)) {
+		               			System.err.println("Your affiliation code must be an integer.");
+		               			System.exit(1);
+		               		}
+
+	   			    		// figure out next person_id
 	               			query = "SELECT MAX(person_id) FROM person;";
 	               			stmt = con.createStatement();
 	               			res = stmt.executeQuery(query);
 
 							if (res.next()){
-								System.out.println(res.getObject(1));
+								person_id = String.valueOf(Integer.parseInt(res.getString(1)) + 1);
+							} else {
+								person_id = "1";
 							}
 
-	               			query = "INSERT INTO person_id (`fname`,`lname`,`person_job`) VALUES (" + request[2] + ", "+ request[3] +", 'author');";
+		               		// insert author into person table
+		               		query = ("INSERT INTO person (`person_id`, `fname`,`lname`,`person_job`) VALUES (" + person_id + ", '" + fname + "', '" + lname + "', 'author');");
 
-	               		} else if (person_job.equals("reviewer") && reviewer_register(req_to_check)){
-	               			//run register sql query to insert
+		               		stmt = con.createStatement();
+		               		stmt.executeUpdate(query);
 
-	               		} else if (person_job.equals("editor") && editor_register(req_to_check)){
-	               			//run register sql query to insert
+		               		// insert author into author table
+		               		query = ("INSERT INTO author (`person_id`,`email`, `mailing_address`) VALUES (" + person_id + ",'" + email + "','" + address + "');");
+
+		               		stmt = con.createStatement();
+		               		stmt.executeUpdate(query);
+
+		               		// insert author's affiliationcode into person_to_affiliation table
+		               		query = ("INSERT INTO person_to_affiliation (`person_id`, `affiliation_code`) VALUES (" + person_id + "," + affiliationcode + ");  ");
+
+		               		stmt = con.createStatement();
+		               		stmt.executeUpdate(query);
+
+		               		System.out.println("Author #" + person_id + " has registered successfully. Please login with your new ID to continue.");
+
+		               	// we expect: register editor <fname> <lname>
+	               		} else if (person_job.equals("editor")) {
+
+		               		if (num_args != 4) {
+	       			    		System.err.println("Incorrect number of arguments.");
+	       			    		System.exit(1);
+	       			    	}
+
+	       			    	String fname = request[2];
+	       			    	String lname = request[3];
+
+	   			    		// figure out next person_id
+	               			query = "SELECT MAX(person_id) FROM person;";
+	               			stmt = con.createStatement();
+	               			res = stmt.executeQuery(query);
+
+							if (res.next()){
+								person_id = String.valueOf(Integer.parseInt(res.getString(1)) + 1);
+							} else {
+								person_id = "1";
+							}
+
+		               		// insert editor into person table
+		               		query = ("INSERT INTO person (`person_id`, `fname`,`lname`,`person_job`) VALUES (" + person_id + ", '" + fname + "', '" + lname + "', 'editor');");
+
+		               		stmt = con.createStatement();
+		               		stmt.executeUpdate(query);
+
+		               		System.out.println("Editor #" + person_id + " has registered successfully. Please login with your new ID to continue.");
+
+
+		               	// we expect: register reviewer <fname> <lname> <email> <affiliationcode> <RICode1> <RICode2> <RICode3>
+	               		} else if (person_job.equals("reviewer")) {
+
+		               		if (num_args < 7 || num_args > 9) {
+	       			    		System.err.println("Incorrect number of arguments.");
+	       			    		System.exit(1);
+	       			    	}
+
+	       			    	String fname = request[2];
+	       			    	String lname = request[3];
+	       			    	String email = request[4];
+	       			    	String affiliationcode = request[5];
+	       			    	String ricode1 = request[6];
+	       			    	String ricode2 = "";
+	       			    	String ricode3 = "";
+	       			    	int num_ricodes = 1;
+
+
+	       			    	if (!isInteger(affiliationcode)) {
+	       			    		System.err.println("Your affiliation code must be an integer.");
+	       			    		System.exit(1);
+	       			    	}
+
+	       			    	if (!isInteger(ricode1)) {
+	       			    		System.err.println("Your first RICode must be an integer.");
+	       			    		System.exit(1);
+	       			    	}
+
+	       			    	if (num_args > 7) {
+		       			    	ricode2 = request[7];
+
+		       			    	if (!isInteger(ricode2)) {
+		       			    		System.err.println("Your second RICode must be an integer.");
+		       			    		System.exit(1);
+		       			    	}
+
+		       			    	num_ricodes = 2;
+
+		       			    	if (num_args > 8) {
+		       			    		ricode3 = request[8];
+
+		       			    		if (!isInteger(ricode3)) {
+		       			    			System.err.println("Your third RICode must be an integer.");
+		       			    			System.exit(1);
+		       			    		}
+
+		       			    		num_ricodes = 3;
+		       			    	}
+	       			    	}
+
+
+	   			    		// figure out next person_id
+	               			query = "SELECT MAX(person_id) FROM person;";
+	               			stmt = con.createStatement();
+	               			res = stmt.executeQuery(query);
+
+							if (res.next()){
+								person_id = String.valueOf(Integer.parseInt(res.getString(1)) + 1);
+							} else {
+								person_id = "1";
+							}
+
+		               		// insert reviewer into person table
+		               		query = ("INSERT INTO person (`person_id`, `fname`,`lname`,`person_job`) VALUES (" + person_id + ", '" + fname + "', '" + lname + "', 'reviewer');");
+
+		               		stmt = con.createStatement();
+		               		stmt.executeUpdate(query);
+
+		               		// insert reviewer into reviewer table
+		               		query = ("INSERT INTO reviewer (`person_id`,`email`) VALUES (" + person_id + ",'" + email + "');");
+
+		               		stmt = con.createStatement();
+		               		stmt.executeUpdate(query);
+
+		               		// check to see if affiliationcode is valid
+		               		query = ("SELECT * FROM affiliation WHERE affiliation_code=" + affiliationcode + ";");
+
+		               		stmt = con.createStatement();
+		               		res = stmt.executeQuery(query);
+
+		               		if ( !res.next() ) {
+		               			System.err.println("Invalid affiliation code.");
+		       			    	System.exit(1);
+		               		}
+
+		               		// insert reviewer's affiliationcode into person_to_affiliation table
+		               		query = ("INSERT INTO person_to_affiliation (`person_id`, `affiliation_code`) VALUES (" + person_id + "," + affiliationcode + ");  ");
+
+		               		stmt = con.createStatement();
+		               		stmt.executeUpdate(query);
+
+
+		               		// insert reviewer ricodes into person_to_RICode table
+		               		for (int i = 6; i < num_args; i++) {
+			               		query = ("INSERT INTO person_to_RICode (`person_id`, `RICode`) VALUES (" + person_id + "," + request[i] + ");");
+
+			               		stmt = con.createStatement();
+			               		stmt.executeUpdate(query);
+
+		               		}
+
+		               		System.out.println("Reviewer #" + person_id + " has registered successfully. Please login with your new ID to continue.");
+
 	               		} else {
-	               			System.err.println("Input error: Make sure your request to register follows the correct format. Read documentation or input -h or --help for guidance.");
-	               			System.exit(1);
+		         			System.err.println("Invalid request to register.");
+		         			System.exit(1);
 	               		}
 	               	}
 
@@ -110,7 +293,7 @@ public class frontend {
 
 							person_job = res.getString(4);
 
-							// change this greeting?
+							// greeting
 							System.out.println("\nWelcome to your " + person_job + " page.\n");
 							System.out.println(res.getString(2) +  " " + res.getString(3));
 
@@ -170,7 +353,7 @@ public class frontend {
 							printStatus(res);
 
 	               		} else {
-	               			// this should never happen! Just in case, though :)
+	               			// this should never happen!
 	               			System.err.println("Input error: Make sure your request to login follows the correct format. Read documentation or input -h or --help for guidance.");
 	               			System.exit(1);
 	               		}
@@ -178,7 +361,7 @@ public class frontend {
 	               	/* ----------------------------------------------------- RESIGN ----------------------------------------------------- */
 	               	// we expect: resign <person_id>
 	               	} else if (request[0].equals("resign") && mode.equals("initial")) {
-	               		// 	ONLY REVIEWERS CAN DO THIS... but they access it from the initial page!
+	               		// only reviewers can do this...
 
 	               		if (num_args != 2) {
 	               			System.err.println("Incorrect number of arguments.");
@@ -195,6 +378,17 @@ public class frontend {
 	               		
 	               		}
 
+	               		// make sure person is a reviewer 
+	               		query = ("SELECT * FROM reviewer WHERE person_id=" + person_id + ";");
+
+	               		stmt = con.createStatement();
+	               		res = stmt.executeQuery(query);
+
+	               		if (!res.next()) {
+	               			System.err.println("You cannot resign because you are not a reviewer.");
+							System.exit(1);
+	               		}
+
 	               		// delete reviewer from database
 	               		query = ("DELETE FROM person WHERE `person_id`=" + person_id + ";");
 
@@ -206,7 +400,7 @@ public class frontend {
 
            		    /* --------------------------------------- AUTHOR OPTIONS --------------------------------------- */
            		    /* ------------- SUBMIT ------------- */
-       			    // we expect: submit <title> <affiliation> <ricode> <filename> <editor_id> <author2_id> <author3_id> <author4_id>
+       			    // we expect: submit <title> <affiliationcode> <ricode> <filename> <editor_id> <author2_id> <author3_id> <author4_id>
        			    } else if (request[0].equals("submit") && mode.equals("author")) {
 
        			    	if (num_args < 6 || num_args > 9) {
@@ -214,15 +408,13 @@ public class frontend {
        			    		System.exit(1);
        			    	}
 
-       			    	// NEED TO VERIFY THESE ARGUMENTS ARE CORRECT
        			    	String title = request[1];
-       			    	String affiliation = request[2];
+       			    	String affiliationcode = request[2];
        			    	String ricode = request[3];
-       			    	String filename = request[4]; // NOT DOING ANYTHING WITH FILENAME RIGHT NOW
+       			    	String filename = request[4]; 
        			    	String editor_id = request[5];
 
        			    	String new_man_id = "";
-       			    	String affiliation_code = "";
 
 	               		// make sure manu_id and reviewer_id are integers
 	               		if ( !isInteger(ricode) || !isInteger(editor_id) ) {
@@ -232,6 +424,11 @@ public class frontend {
 	               		
 	               		}
 
+	               		if (!isInteger(affiliationcode)) {
+	               			System.err.println("Your affiliation code must be an integer.");
+	               			System.exit(1);
+	               		}
+
    			    		// figure out next manuscript_id
                			query = "SELECT MAX(manuscript_id) FROM manuscript;";
                			stmt = con.createStatement();
@@ -239,36 +436,12 @@ public class frontend {
 
 						if (res.next()){
 							new_man_id = String.valueOf(Integer.parseInt(res.getString(1)) + 1);
-						}
-
-       			    	// insert affiliation information
-
-       			    	// affiliation already exists
-						query = ("SELECT affiliation_code FROM affiliation WHERE affiliation = '" + affiliation + "' LIMIT 1;");
-
-						stmt = con.createStatement();
-	           			res = stmt.executeQuery(query);
-	           			
-	           			if (res.next()){
-							affiliation_code = res.getString(1); // get affiliation_code
 						} else {
-	               			query = "SELECT MAX(affiliation_code) FROM affiliation;";
-	               			stmt = con.createStatement();
-	               			res = stmt.executeQuery(query);
-
-							if (res.next()){
-								affiliation_code = String.valueOf(Integer.parseInt(res.getString(1)) + 1); // create new affiliation_code
-							}
-
-							// insert new affiliation into affiliation table
-							query = ("INSERT INTO `affiliation` (`affiliation_code`,`affiliation`) VALUES (" + affiliation_code + ",'" + affiliation + "');");
-
-							stmt = con.createStatement();
-							stmt.executeUpdate(query);
+							new_man_id = "1";
 						}
 
 						// associate this affiliation with this person
-						query = ("INSERT INTO `person_to_affiliation` (`person_id`,`affiliation_code`) VALUES (" + person_id + "," + affiliation_code + ");");
+						query = ("INSERT INTO `person_to_affiliation` (`person_id`,`affiliation_code`) VALUES (" + person_id + "," + affiliationcode + ");");
 
 						stmt = con.createStatement();
 						stmt.executeUpdate(query);
@@ -594,11 +767,17 @@ public class frontend {
  						stmt = con.createStatement();
             			stmt.executeUpdate(query);
 
+            			// set manuscript status to be "scheduled for publication"
+ 						query = ("UPDATE manuscript SET `man_status`=`scheduled for publication` WHERE manuscript_id=" + manu_id + ");");
+
+ 						stmt = con.createStatement();
+            			stmt.executeUpdate(query);
+
             			System.out.println(query);
             			System.out.println("Manuscript #" + manu_id + " is at position " + pos_in_issue + " in issue #" + issue_id + ".");	
 
 		    		/* ------------- PUBLISH ------------- */
-		    		// we expect: status <issue_id>
+		    		// we expect: status <issue_id> <pub_period_num>
 		    		} else if (request[0].equals("publish") && mode.equals("editor")) {
 
 		    			if (num_args != 2) {
@@ -607,11 +786,13 @@ public class frontend {
 		    			}
 
 	               		String issue_id = request[1];
+	               		String pub_period_num = request[2];
+
 
 	               		// make sure issue is an integer
-	               		if ( !isInteger(issue_id) ) {
+	               		if ( !isInteger(issue_id) || !isInteger(pub_period_num) ) {
 
-	               			System.err.println("Invalid issue ID.");
+	               			System.err.println("Arguments must be integers.");
 							System.exit(1);
 	               		
 	               		}
@@ -619,8 +800,11 @@ public class frontend {
 	               		// get today's date
             			String currentTime = getDate();
 
+            			// get this year
+            			String currentYear = getYear();
+
 						// update manuscript information into issue_to_man
- 						query = ("UPDATE issue SET `print_date`=" + currentTime + " WHERE issue_id=" + issue_id + ");");
+ 						query = ("UPDATE issue SET `print_date`=" + currentTime + ", `pub_period_num`=" + pub_period_num + ", `pub_year`=" + currentYear + " WHERE issue_id=" + issue_id + ");");
 
  						stmt = con.createStatement();
             			stmt.executeUpdate(query);
@@ -640,7 +824,6 @@ public class frontend {
        			    		System.exit(1);
        			    	}
 
-       			    	// NEED TO VERIFY THESE ARGUMENTS ARE CORRECT
        			    	String manuscript_id = request[1];
        			    	String appropriateness = request[2];
        			    	String clarity = request[3];
@@ -657,10 +840,16 @@ public class frontend {
        			    	}
 
        			    	if (!isIntegerBetween1And10(appropriateness) || !isIntegerBetween1And10(clarity) ||
-       			    		!isIntegerBetween1And10(methodology) || !isIntegerBetween1And10(contribution) ||
-       			    		!isIntegerBetween1And10(recommendation) ) {
+       			    		!isIntegerBetween1And10(methodology) || !isIntegerBetween1And10(contribution) ) {
 
        			    		System.err.println("Incorrect arguments. Ratings must be integers between 1 and 10.");
+       			    		System.exit(1);
+
+       			    	}
+
+       			    	if ( !recommendation.equals("accept") || !recommendation.equals("reject") ) {
+
+       			    		System.err.println("Incorrect arguments. Recommendation must be `accept` or `reject`.");
        			    		System.exit(1);
 
        			    	}
@@ -722,86 +911,7 @@ public class frontend {
 				System.out.print("\nConnection terminated.\n");
 		    } catch (Exception e) { /* ignore cleanup errors */ }
 		}
-    }
-
-
-
-	/*
-     *
-     * author_register checks if num of args and format of register-author request is correct. returns boolean.	
-     * true if format is:	 <fname> <lname> <email> <address> <affiliation>
-     *
-     */
-    public static boolean  author_register (String[] req){
-        if (req.length == 5){
-            if (isEmailAddress(req[2]) && isInteger(req[4])){  //email && affiliation code
-                return true;
-            } else {
-                System.err.println("Input error: incorrect formatting of values");
-                System.exit(1); 
-            }
-        } else {
-            System.err.println("Input error: invalid number of input vals");
-            System.exit(1);
-        }
-        return false;
-    } 
-
-    /*
-    *
-    * reviewer_register checks if num of args and format of register-reviewer request is correct. returns boolean.	
-    * correct format is:	 <fname> <lname> <email> <affiliationCode> <RICode1> <RICode2 (optional)> <RICode3 (optional)>
-    *
-    */
-    public static boolean reviewer_register (String[] req){
-    	if (req.length == 5){ // 1 RICode submitted
-			if (isEmailAddress(req[2]) && isInteger(req[3])&& isInteger(req[4])  ){  //email && affiliation code and RICodes
-				return true;
-			} else {
-				System.err.println("Input error: incorrect formatting of values");
-				System.exit(1); 
-			}
-    	} else if (req.length == 6){ // 2 RICodes submitted
-    		if (isEmailAddress(req[2]) && isInteger(req[3]) && isInteger(req[4]) && isInteger(req[5])){  //email && affiliation code and RICodes
-				return true;
-			} else {
-				System.err.println("Input error: incorrect formatting of values");
-				System.exit(1); 
-			}
-    	} else if (req.length == 7){ //  3 RICodes submitted
-    		if (isEmailAddress(req[2]) && isInteger(req[3]) && isInteger(req[4]) && isInteger(req[5]) && isInteger(req[6]) ){  //email && affiliation code and RICodes
-				return true;
-			} else {
-				System.err.println("Input error: incorrect formatting of values");
-				System.exit(1); 
-			}
-    	} else {
-    		System.err.println("Input error: invalid number of input vals");
-    		System.exit(1);
-    	}
-    	return false;
-    } 
-
-    /*
-    *
-    * editor_register checks if num of args and format of register-editor request is correct. returns boolean.	
-    * correct format is:	 <fname> <lname> <email> 
-    *
-    */
-    public static boolean editor_register (String[] req){
-    	if (req.length == 3){
-			if (isEmailAddress(req[2])){  //email 
-				return true;
-			} else {
-				System.err.println("Input error: incorrect formatting of input vals.");
-				System.exit(1);  
-			}
-    	} else {
-    		System.err.println("Input error: invalid number of input vals");
-    		System.exit(1);
-    	}
-    	return false;
-    } 
+	}
 
 
     /*
@@ -873,6 +983,12 @@ public class frontend {
 	    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	return sdf.format(new java.util.Date());
 	}    	
+
+	// gets today's year in the form of a string
+    public static String getYear() {
+	    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy");
+    	return sdf.format(new java.util.Date());
+	}    
 
 
 

@@ -77,7 +77,7 @@ BEGIN
 END $$
 DELIMITER ;
 
--- TRIGGER 3
+-- TRIGGER 3 - set the man_status for all manuscripts in an issue to "published" when editor publishes the issue
 DELIMITER $$
 CREATE TRIGGER setManuscriptsToPublished AFTER UPDATE ON issue FOR EACH ROW
 BEGIN
