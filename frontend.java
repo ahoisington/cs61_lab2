@@ -9,9 +9,9 @@ import java.util.*;
 
 public class frontend {
     public static final String SERVER   = "jdbc:mysql://sunapee.cs.dartmouth.edu/";
-    public static final String USERNAME = "epills";
-    public static final String PASSWORD = "happyKale44";
-    public static final String DATABASE = "epills_db";
+    public static final String USERNAME = "acaciah";
+    public static final String PASSWORD = "Password1";
+    public static final String DATABASE = "acaciah_db";
 
 
     public static void main(String[] args) {
@@ -581,13 +581,13 @@ public class frontend {
 	               		query = ("SELECT RICode FROM person_to_RICode WHERE person_id=" + reviewer_id +
 	               			" AND RICode=(SELECT RICode FROM manuscript WHERE manuscript_id=" + manu_id + " AND person_id=" + person_id + ");");
 
-	               		System.out.println(query);
+	   
 
 	               		stmt = con.createStatement();
             			res = stmt.executeQuery(query);
 
             			if (!res.next()) {
-            				System.err.println("Reviewer " + reviewer_id + " cannot be assigned to Manuscript #" + manu_id + ".");
+            				System.err.println("Reviewer " + reviewer_id + " cannot be assigned to Manuscript #" + manu_id + " because they do not match in RICode.");
             				System.exit(1);
             			}		
 
@@ -791,7 +791,7 @@ public class frontend {
 		    		// we expect: status <issue_id> <pub_period_num>
 		    		} else if (request[0].equals("publish") && mode.equals("editor")) {
 
-		    			if (num_args != 2) {
+		    			if (num_args != 3) {
 		    				System.err.println("Incorrect number of arguments.");
 		    				System.exit(1);
 		    			}
