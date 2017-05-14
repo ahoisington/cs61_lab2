@@ -1,7 +1,7 @@
 -- Elisabeth & Acacia
 -- insert data for lab 2c
 -- April 22, 2017
-
+USE acaciah_db;-- 
 -- person
 
 -- (authors)
@@ -423,11 +423,11 @@ INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,
 -- accepted
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (41,"eros.","2016-11-05 16:01:10","accepted",28,101);
 -- rejected
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (21,"iaculis","2016-12-21 05:50:19","rejected",107,102);
+-- INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (21,"iaculis","2016-12-21 05:50:19","rejected",107,102);
 -- under review
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (1,"nostra,","2016-07-15 00:51:38","under review",1,102);
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (2,"cheesecake,","2016-08-15 00:51:38","under review",4,102);
-INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (3,"fries,","2016-09-15 00:51:38","under review",5,101);
+-- INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (2,"cheesecake,","2016-08-15 00:51:38","under review",4,102);
+-- INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (3,"fries,","2016-09-15 00:51:38","under review",5,101);
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (4,"collis pasta,","2016-10-15 00:51:38","under review",6,101);
 INSERT INTO `manuscript` (`manuscript_id`,`title`,`date_submitted`,`man_status`,`RICode`,`person_id`) VALUES (5,"MOZZ STICKS,","2015-01-05 00:31:48","under review",7,102);
 
@@ -481,9 +481,9 @@ INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriate
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (1,70,"2016-11-21 08:31:29",2,3,10,9,2,"2016-05-11 06:15:16");
 
 -- manuscript 2 has RICode 4 and 3 reviewers
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (2,54,"2017-02-09 06:00:53",7,1,2,8,9,"2016-06-10 17:07:47");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (2,58,"2017-04-23 17:40:25",2,8,1,9,5,"2017-04-21 00:45:16");
-INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (2,71,"2016-08-18 10:27:55",7,5,4,5,5,"2017-04-08 00:39:44");
+-- INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (2,54,"2017-02-09 06:00:53",7,1,2,8,9,"2016-06-10 17:07:47");
+-- INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (2,58,"2017-04-23 17:40:25",2,8,1,9,5,"2017-04-21 00:45:16");
+-- INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (2,71,"2016-08-18 10:27:55",7,5,4,5,5,"2017-04-08 00:39:44");
 
 -- manuscript 3 has RICode 5 and 3 reviewers
 INSERT INTO `feedback` (`manuscript_id`,`person_id`,`date_assigned`,`appropriateness`,`clarity`,`methodology`,`contribution_to_field`,`recommendation`,`date_completed`) VALUES (3,55,"2016-11-26 18:53:47",8,1,7,10,8,"2017-08-24 21:51:58");
