@@ -1,5 +1,5 @@
 
-USE epills_db;
+USE acaciah_db;
 SHOW TABLES;
 
 DROP TABLE IF EXISTS author;
@@ -16,8 +16,6 @@ DROP TABLE IF EXISTS issue;
 DROP TABLE IF EXISTS manuscript;
 DROP TABLE IF EXISTS RICodes;
 DROP TABLE IF EXISTS person;
-
-DROP VIEW IF EXISTS reviewer_info;
 
 
 --
@@ -331,14 +329,5 @@ CREATE TABLE person_to_affiliation
 );
 
 
---
--- reviewer_info: outputs info on reviewer and all manuscripts he/she is writing feedback for.
--- 
-CREATE VIEW reviewer_info
-AS
-SELECT manuscript.manuscript_id AS manuscript_id, feedback.person_id AS reviewer_person_id, fname AS reviewer_fname, lname AS reviewer_lname, date_submitted
-FROM feedback
-JOIN manuscript ON feedback.manuscript_id = manuscript.manuscript_id AND manuscript.man_status = 'under review'
-JOIN person ON feedback.person_id = person.person_id; -- reviewers
-    
+
 
