@@ -2,7 +2,7 @@
 -- create tables for lab 2c
 -- April 22, 2017
 
-USE epills_db;
+USE acaciah_db;
 SHOW TABLES;
 
 DROP TABLE IF EXISTS author;
