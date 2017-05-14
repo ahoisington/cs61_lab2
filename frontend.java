@@ -117,6 +117,17 @@ public class frontend {
 		               		stmt = con.createStatement();
 		               		stmt.executeUpdate(query);
 
+       		        		// check to see if affiliationcode is valid
+       		        		query = ("SELECT * FROM affiliation WHERE affiliation_code=" + affiliationcode + ";");
+
+       		        		stmt = con.createStatement();
+       		        		res = stmt.executeQuery(query);
+
+       		        		if ( !res.next() ) {
+       		        			System.err.println("The affiliation code #" + affiliationcode + " does not exist.");
+       					    	System.exit(1);
+       		        		}
+
 		               		// insert author's affiliationcode into person_to_affiliation table
 		               		query = ("INSERT INTO person_to_affiliation (`person_id`, `affiliation_code`) VALUES (" + person_id + "," + affiliationcode + ");  ");
 
@@ -237,7 +248,7 @@ public class frontend {
 		               		res = stmt.executeQuery(query);
 
 		               		if ( !res.next() ) {
-		               			System.err.println("Invalid affiliation code.");
+       		        			System.err.println("The affiliation code #" + affiliationcode + " does not exist.");
 		       			    	System.exit(1);
 		               		}
 
