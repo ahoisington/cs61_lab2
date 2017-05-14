@@ -75,8 +75,9 @@ JOIN manuscript ON manuscript.manuscript_id = issue_to_man.manuscript_id
 WHERE man_status = 'published'
 ORDER BY issue_id ASC, date_submitted ASC;
 
+  
 --
--- reviewer_info: helper for ReviewQueue. needed because no other way to differentiate author fname and reviewer fname
+-- reviewer_info: outputs info on reviewer and all manuscripts he/she is writing feedback for.
 -- 
 CREATE VIEW reviewer_info
 AS
@@ -85,6 +86,9 @@ FROM feedback
 JOIN manuscript ON feedback.manuscript_id = manuscript.manuscript_id AND manuscript.man_status = 'under review'
 JOIN person ON feedback.person_id = person.person_id; -- reviewers
     
+
+
+
 --
 -- author_info: helper for ReviewQueue. needed because no other way to differentiate author fname and reviewer fname
 -- 
